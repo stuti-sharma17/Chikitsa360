@@ -31,6 +31,11 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['search_form'] = DoctorSearchForm()
         
+        # Statistics for homepage
+        context['total_doctors'] = User.objects.filter(role=User.Role.DOCTOR, is_active=True).count()
+        context['total_patients'] = User.objects.filter(role=User.Role.PATIENT, is_active=True).count()
+        context['total_consultations'] = Appointment.objects.filter(status='completed').count()
+        
         # Get featured doctors (for example, those with most appointments)
         doctor_users = User.objects.filter(role=User.Role.DOCTOR, is_active=True)
         featured_doctors = []

@@ -14,10 +14,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="bg-gradient-to-r from-green-500 to-teal-500 py-8">
+<div class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-2xl md:text-3xl font-bold text-white">Secure Payment</h1>
-        <p class="mt-2 text-green-100">Complete your appointment booking with a secure payment</p>
+        <p class="mt-2 text-blue-100">Complete your appointment booking with a secure payment</p>
     </div>
 </div>
 
@@ -104,7 +104,7 @@
                             data-user-email="{{ appointment.patient.email }}"
                             data-user-phone="{{ appointment.patient.profile.phone_number|default:'' }}"
                             data-callback-url="{{ callback_url }}"
-                            class="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                            class="w-full py-3 px-4 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-light)] focus:ring-offset-2">
                             Pay Now
                         </button>
                     </div>

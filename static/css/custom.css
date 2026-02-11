@@ -1,10 +1,23 @@
 /* Chikitsa360 Custom Styles - Modern Health UI */
 
 :root {
-  /* Primary brand colors */
-  --primary-teal: #00A6A6;
-  --primary-dark: #185E6A;
-  --primary-light: #BBDDE6;
+  /* ========================================
+     NEW BLUE COLOR PALETTE (Primary)
+     From darkest to lightest:
+     #002B49 → #00416A → #1976A3 → #6BA3C4 → #B8D4E8
+     ======================================== */
+  
+  /* Semantic color variables (USE THESE GOING FORWARD) */
+  --color-primary: #1976A3;           /* Main brand blue */
+  --color-primary-dark: #00416A;      /* Darker blue for hovers/emphasis */
+  --color-primary-darker: #002B49;    /* Darkest blue (navy) */
+  --color-primary-light: #6BA3C4;     /* Light blue for accents */
+  --color-primary-lighter: #B8D4E8;   /* Lightest blue for backgrounds */
+  
+  /* Legacy variable names (BACKWARD COMPATIBILITY - maps to new colors) */
+  --primary-teal: var(--color-primary);
+  --primary-dark: var(--color-primary-dark);
+  --primary-light: var(--color-primary-lighter);
   
   /* Secondary/accent colors */
   --accent-orange: #FF7F5C;
@@ -61,13 +74,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease;
   padding: 0.5rem 1.25rem;
   font-weight: 600;
-  box-shadow: 0 2px 5px rgba(0, 166, 166, 0.3);
+  box-shadow: 0 2px 5px rgba(25, 118, 163, 0.3);
 }
 
 .c360-btn-primary:hover, .c360-btn-primary:focus {
   background-color: var(--primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 166, 166, 0.4);
+  box-shadow: 0 4px 8px rgba(25, 118, 163, 0.4);
 }
 
 .c360-btn-secondary {
@@ -106,7 +119,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Service Icons */
 .c360-service-icon {
   color: var(--primary-teal);
-  background-color: rgba(0, 166, 166, 0.1);
+  background-color: rgba(25, 118, 163, 0.1);
   padding: 1rem;
   border-radius: 50%;
   width: 70px;
@@ -219,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .c360-badge {
-  background-color: rgba(0, 166, 166, 0.1);
+  background-color: rgba(25, 118, 163, 0.1);
   color: var(--primary-teal);
   font-size: 0.75rem;
   font-weight: 600;
@@ -228,7 +241,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .c360-badge-featured {
-  background-color: rgba(0, 166, 166, 0.1);
+  background-color: rgba(25, 118, 163, 0.1);
   color: var(--primary-teal);
 }
 
@@ -299,4 +312,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 .icon-circle {
   @apply h-16 w-16 rounded-full bg-primary-teal flex items-center justify-center shadow-md;
+}
+
+/* Marquee Animation for Announcements Ticker */
+.c360-marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.c360-marquee-content {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+.c360-marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

@@ -57,7 +57,7 @@
         <div class="mt-6">
             {% if appointment.can_join %}
                 <a href="{% url 'join_consultation' appointment.pk %}"
-                   class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded">
+                   class="inline-block bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-medium py-2 px-4 rounded">
                     Join Consultation
                 </a>
                 <p class="text-sm text-gray-500 mt-2">
