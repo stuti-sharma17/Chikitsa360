@@ -41,7 +41,7 @@
                             <!-- Action buttons -->
                             <div class="mt-4 md:mt-0 flex flex-col space-y-2 md:space-y-0 md:space-x-3 md:flex-row">
                                 {% if appointment.status == 'CONFIRMED' %}
-                                    <a href="{% url 'join_consultation' appointment.pk %}" class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded text-sm font-medium">
+                                    <a href="{% url 'join_consultation' appointment.pk %}" class="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-4 py-2 rounded text-sm font-medium">
                                         Join Consultation
                                     </a>
                                 {% endif %}

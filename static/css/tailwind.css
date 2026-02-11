@@ -84,18 +84,41 @@
   @apply bg-gray-200 text-gray-800;
 }
 
-/* Healthcare color scheme */
+/* Healthcare color scheme - Using CSS Variables */
 .text-brand {
-  @apply text-blue-600;
+  color: var(--color-primary);
 }
 
 .bg-brand {
-  @apply bg-blue-600;
+  background-color: var(--color-primary);
 }
 
 .border-brand {
-  @apply border-blue-600;
+  border-color: var(--color-primary);
 }
+
+/* Brand color utility classes (use CSS variables for consistency) */
+.text-primary-teal { color: var(--color-primary); }
+.text-primary-dark { color: var(--color-primary-dark); }
+.text-primary-light { color: var(--color-primary-light); }
+.bg-primary-teal { background-color: var(--color-primary); }
+.bg-primary-dark { background-color: var(--color-primary-dark); }
+.bg-primary-light { background-color: var(--color-primary-lighter); }
+.border-primary-teal { border-color: var(--color-primary); }
+.border-primary-dark { border-color: var(--color-primary-dark); }
+.border-primary-light { border-color: var(--color-primary-lighter); }
+
+/* Focus ring utilities for brand colors */
+.focus\:ring-primary-teal:focus { --tw-ring-color: var(--color-primary); }
+.focus\:border-primary-teal:focus { border-color: var(--color-primary); }
+
+/* Hover utilities */
+.hover\:text-primary-teal:hover { color: var(--color-primary); }
+.hover\:text-primary-dark:hover { color: var(--color-primary-dark); }
+.hover\:bg-primary-teal:hover { background-color: var(--color-primary); }
+.hover\:bg-primary-dark:hover { background-color: var(--color-primary-dark); }
+.hover\:border-primary-teal:hover { border-color: var(--color-primary); }
+.hover\:border-primary-light:hover { border-color: var(--color-primary-lighter); }
 
 /* Responsive utilities */
 @media (max-width: 640px) {
@@ -112,8 +135,8 @@
         @apply block text-sm font-medium text-gray-700;
     }
     .form-input {
-        @apply w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500;
+        @apply w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
     }
     .form-textarea {
-        @apply w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm h-28 resize-none focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500;
+        @apply w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm h-28 resize-none focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
     }

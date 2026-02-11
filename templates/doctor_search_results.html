@@ -3,49 +3,81 @@
 {% block title %}Search Results - Chikitsa360{% endblock %}
 
 {% block content %}
-<div class="bg-gray-50 min-h-screen py-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10">
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Doctor Search Results</h1>
-      <p class="mt-2 text-lg text-gray-600">Find the right healthcare provider for your needs</p>
-    </div>
+<div class="bg-gray-50 min-h-screen">
+  <!-- Header Section with Search -->
+  <div class="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-white">Find Your Doctor</h1>
+        <p class="mt-2 text-lg text-blue-100">Search from our network of qualified healthcare professionals</p>
+      </div>
 
-    <!-- Search Form -->
-    <div class="c360-card p-6 mb-10">
-      <form method="get" action="{% url 'doctor_search' %}" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div>
-          <label for="query" class="form-label">Name or Keyword</label>
-          <input type="text" name="query" id="query" value="{{ request.GET.query }}" class="form-input" placeholder="Search by name or keyword">
-        </div>
+      <!-- Search Form -->
+      <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+        <form method="get" action="{% url 'doctor_search' %}">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- Name/Keyword Input -->
+            <div class="md:col-span-1">
+              <label for="query" class="block text-sm font-medium text-gray-700 mb-2">
+                <i class="fas fa-search text-[var(--color-primary)] mr-1"></i> Name or Keyword
+              </label>
+              <input type="text" name="query" id="query" value="{{ request.GET.query }}" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-colors" 
+                placeholder="e.g., Dr. Smith">
+            </div>
 
-        <div>
-          <label for="specialty" class="form-label">Specialty</label>
-          <div class="relative">
-            <select name="specialty" id="specialty" class="form-input pr-10">
-              <option value="">All Specialties</option>
-              {% for specialty in specialties %}
-                {% if specialty %}
-                  <option value="{{ specialty }}" {% if request.GET.specialty == specialty %}selected{% endif %}>{{ specialty }}</option>
-                {% endif %}
-              {% endfor %}
-            </select>
-            <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-400 pointer-events-none">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <!-- Specialty Dropdown -->
+            <div class="md:col-span-1">
+              <label for="specialty" class="block text-sm font-medium text-gray-700 mb-2">
+                <i class="fas fa-stethoscope text-[var(--color-primary)] mr-1"></i> Specialty
+              </label>
+              <select name="specialty" id="specialty" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-colors appearance-none cursor-pointer"
+                style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20fill%3D%22none%22%20viewBox%3D%220%200%2024%2024%22%20stroke%3D%22%236B7280%22%3E%3Cpath%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20stroke-width%3D%222%22%20d%3D%22M19%209l-7%207-7-7%22%2F%3E%3C%2Fsvg%3E'); background-position: right 12px center; background-repeat: no-repeat; background-size: 20px;">
+                <option value="">All Specialties</option>
+                {% for specialty in specialties %}
+                  {% if specialty %}
+                    <option value="{{ specialty }}" {% if request.GET.specialty == specialty %}selected{% endif %}>{{ specialty }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- Date Input -->
+            <div class="md:col-span-1">
+              <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
+                <i class="fas fa-calendar-alt text-[var(--color-primary)] mr-1"></i> Available Date
+              </label>
+              <input type="date" name="date" id="date" value="{{ request.GET.date }}" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-colors">
+            </div>
+
+            <!-- Search Button -->
+            <div class="md:col-span-1 flex items-end">
+              <button type="submit" class="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg">
+                <i class="fas fa-search mr-2"></i> Search
+              </button>
             </div>
           </div>
-        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-        <div>
-          <label for="date" class="form-label">Available Date</label>
-          <input type="date" name="date" id="date" value="{{ request.GET.date }}" class="form-input">
-        </div>
-
-        <div class="md:col-span-3 text-right">
-          <button type="submit" class="c360-btn-primary">
-            <i class="fas fa-search mr-2"></i> Search Doctors
-          </button>
-        </div>
-      </form>
+  <!-- Results Section -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Results Count -->
+    <div class="mb-6">
+      <p class="text-gray-600">
+        {% if doctors %}
+          <span class="font-semibold text-gray-800">{{ doctors|length }}</span> doctor(s) found
+          {% if request.GET.query or request.GET.specialty or request.GET.date %}
+            matching your search criteria
+          {% endif %}
+        {% else %}
+          No doctors found. Try adjusting your search filters.
+        {% endif %}
+      </p>
     </div>
 
     <!-- Results List -->
@@ -59,7 +91,7 @@
                   {% if doctor.doctor_profile.profile_picture %}
                     <img src="{{ doctor.doctor_profile.profile_picture }}" alt="{{ doctor.get_full_name }}" class="h-20 w-20 rounded-full object-cover">
                   {% else %}
-                    <span class="text-green-600 font-bold text-2xl">{{ doctor.first_name|slice:":1" }}{{ doctor.last_name|slice:":1" }}</span>
+                    <span class="text-[var(--color-primary)] font-bold text-2xl">{{ doctor.first_name|slice:":1" }}{{ doctor.last_name|slice:":1" }}</span>
                   {% endif %}
                 </div>
                 <div class="mt-4 md:mt-0 md:ml-6">

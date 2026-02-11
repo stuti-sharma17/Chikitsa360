@@ -26,7 +26,7 @@
     <div class="bg-gradient-to-r from-[var(--primary-teal)]  to-[var(--primary-dark)] px-6 py-8 text-white">
       <div class="flex flex-col md:flex-row items-center">
         <div class="flex-shrink-0 h-24 w-24 md:h-32 md:w-32 bg-white rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-6">
-          <svg class="h-16 w-16 md:h-20 md:w-20 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="h-16 w-16 md:h-20 md:w-20 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         </div>
@@ -43,7 +43,7 @@
                 Speaks: {{ profile.languages_spoken }}
               </span>
               {% endif %}
-              <span class="bg-green-600 bg-opacity-90 text-white px-3 py-1 rounded-full text-sm">
+              <span class="bg-[var(--color-primary)] bg-opacity-90 text-white px-3 py-1 rounded-full text-sm">
                 ₹{{ profile.consultation_fee }} per session
               </span>
             </div>
@@ -91,7 +91,7 @@
               {% for slot in date_group.list %}
               <div class="availability-slot">
                 {% if can_book %}
-                    <a href="{% url 'book_appointment' slot.id %}"class="block px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium text-center rounded-md shadow">
+                    <a href="{% url 'book_appointment' slot.id %}"class="block px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white text-sm font-medium text-center rounded-md shadow">
                         {{ slot.start_time|time:"g:i A" }} - {{ slot.end_time|time:"g:i A" }}
                     </a>
                 {% else %}

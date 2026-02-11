@@ -3,141 +3,174 @@
 {% block title %}Chikitsa360: Healthcare! Everywhere!{% endblock %}
 
 {% block content %}
+<!-- Announcements Ticker -->
+<div class="bg-gradient-to-r from-[#002B49] to-[#00416A] py-2 overflow-hidden">
+    <div class="c360-marquee">
+        <div class="c360-marquee-content">
+            <!-- First set of announcements -->
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-bullhorn text-yellow-400 mr-2"></i>
+                <strong>New:</strong>&nbsp;AI-powered health assessments now available!
+            </span>
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-calendar-check text-green-400 mr-2"></i>
+                Book appointments 24/7 with our extended hours service
+            </span>
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-mobile-alt text-blue-300 mr-2"></i>
+                Download our mobile app for healthcare on-the-go
+            </span>
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-shield-alt text-purple-400 mr-2"></i>
+                Your health data is 100% secure and encrypted
+            </span>
+            <!-- Duplicate for seamless loop -->
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-bullhorn text-yellow-400 mr-2"></i>
+                <strong>New:</strong>&nbsp;AI-powered health assessments now available!
+            </span>
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-calendar-check text-green-400 mr-2"></i>
+                Book appointments 24/7 with our extended hours service
+            </span>
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-mobile-alt text-blue-300 mr-2"></i>
+                Download our mobile app for healthcare on-the-go
+            </span>
+            <span class="inline-flex items-center text-white text-sm mx-8">
+                <i class="fas fa-shield-alt text-purple-400 mr-2"></i>
+                Your health data is 100% secure and encrypted
+            </span>
+        </div>
+    </div>
+</div>
+
 <!-- Hero Section -->
 <div class="c360-hero relative overflow-hidden">
     <div class="c360-hero-shape"></div>
     <div class="c360-hero-shape" style="top: -5%; right: auto; left: -10%; width: 400px; height: 400px; opacity: 0.05;"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 lg:py-24 relative z-10 c360-hero-content">
-        <div class="md:flex md:items-center md:space-x-12">
-            <div class="md:w-1/2 animate-on-scroll opacity-0" data-animation="slide-up">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-                    Healthcare<br class="hidden md:block"> Everywhere.<br class="hidden md:block"> Anytime.
-                </h1>
-                <p class="mt-6 text-xl text-blue-100 max-w-lg">
-                    Connect with specialized healthcare providers through secure video consultations from the comfort of your home.
-                </p>
-                <div class="mt-10 flex flex-col sm:flex-row sm:space-x-6 space-y-4 sm:space-y-0">
-                    <a href="{% url 'doctor_search' %}" class="c360-btn-primary inline-flex items-center justify-center px-6 py-3 text-base font-medium">
-                        <i class="fas fa-search mr-2"></i> Find a Doctor
-                    </a>
-                    {% if not user.is_authenticated %}
-                    <a href="{% url 'register' %}" class="c360-btn-secondary inline-flex items-center justify-center px-6 py-3 text-base font-medium">
-                        <i class="fas fa-user-plus mr-2"></i> Sign Up Now
-                    </a>
-                    {% endif %}
-                </div>
-                
-                <!-- Feature badges -->
-                <div class="mt-10 grid grid-cols-2 gap-4 max-w-lg">
-                    <div class="bg-white bg-opacity-10 rounded-lg p-3 flex items-center">
-                        <i class="fas fa-video text-white mr-3 text-xl"></i>
-                        <span class="text-white font-medium">HD Video Calls</span>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 lg:py-12 relative z-10 c360-hero-content">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight animate-on-scroll opacity-0" data-animation="slide-up">
+                Healthcare Everywhere. Anytime.
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-blue-100 max-w-2xl mx-auto animate-on-scroll opacity-0" data-animation="fade-in">
+                Connect with specialized healthcare providers through secure video consultations from the comfort of your home.
+            </p>
+            
+            <!-- Role-based Entry Cards -->
+            {% if not user.is_authenticated %}
+            <!-- Show both cards for logged out users -->
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-6 animate-on-scroll opacity-0" data-animation="slide-up">
+                <a href="{% url 'register' %}?role=patient" 
+                   class="group relative bg-white rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-56">
+                    <div class="flex flex-col items-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#B8D4E8] to-[#6BA3C4] rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user text-xl text-[#002B49]"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-[#002B49] mb-1">I'm a Patient</h3>
+                        <p class="text-gray-600 text-xs text-center">Find doctors & book appointments</p>
+                        <span class="mt-2 inline-flex items-center text-[#1976A3] font-medium text-sm group-hover:text-[#00416A]">
+                            Get Started <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
                     </div>
-                    <div class="bg-white bg-opacity-10 rounded-lg p-3 flex items-center">
-                        <i class="fas fa-lock text-white mr-3 text-xl"></i>
-                        <span class="text-white font-medium">Secure & Private</span>
+                </a>
+                <a href="{% url 'register' %}?role=doctor" 
+                   class="group relative bg-white rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-56">
+                    <div class="flex flex-col items-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#FFB997] to-[#FF7F5C] rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-user-md text-xl text-white"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-[#002B49] mb-1">I'm a Doctor</h3>
+                        <p class="text-gray-600 text-xs text-center">Manage patients & appointments</p>
+                        <span class="mt-2 inline-flex items-center text-[#FF7F5C] font-medium text-sm group-hover:text-[#e66a4a]">
+                            Join Now <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
                     </div>
-                    <div class="bg-white bg-opacity-10 rounded-lg p-3 flex items-center">
-                        <i class="fas fa-file-medical text-white mr-3 text-xl"></i>
-                        <span class="text-white font-medium">Digital Prescriptions</span>
-                    </div>
-                    <div class="bg-white bg-opacity-10 rounded-lg p-3 flex items-center">
-                        <i class="fas fa-comment-medical text-white mr-3 text-xl"></i>
-                        <span class="text-white font-medium">Chat Support</span>
-                    </div>
-                </div>
+                </a>
             </div>
-            <div class="hidden md:block md:w-1/2 mt-10 md:mt-0 animate-on-scroll opacity-0" data-animation="slide-in-right">
-                <div class="relative">
-                    <div class="absolute -top-4 -right-4 bottom-4 -left-4 bg-gradient-to-r from-accent-orange to-accent-peach opacity-60 rounded-2xl transform rotate-3"></div>
-                    <img class="w-full rounded-xl shadow-2xl relative" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Doctor consultation">
+            {% elif user.role == 'patient' %}
+            <!-- Show Patient dashboard link for logged in patients -->
+            <div class="mt-8 flex justify-center animate-on-scroll opacity-0" data-animation="slide-up">
+                <a href="{% url 'patient_dashboard' %}" 
+                   class="group relative bg-white rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-64">
+                    <div class="flex flex-col items-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#B8D4E8] to-[#6BA3C4] rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-tachometer-alt text-xl text-[#002B49]"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-[#002B49] mb-1">Go to My Dashboard</h3>
+                        <p class="text-gray-600 text-xs text-center">View appointments, find doctors & manage health</p>
+                        <span class="mt-2 inline-flex items-center text-[#1976A3] font-medium text-sm group-hover:text-[#00416A]">
+                            Open Dashboard <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            {% elif user.role == 'doctor' %}
+            <!-- Show Doctor dashboard link for logged in doctors -->
+            <div class="mt-8 flex justify-center animate-on-scroll opacity-0" data-animation="slide-up">
+                <a href="{% url 'doctor_dashboard' %}" 
+                   class="group relative bg-white rounded-2xl p-5 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-64">
+                    <div class="flex flex-col items-center">
+                        <div class="w-14 h-14 bg-gradient-to-br from-[#FFB997] to-[#FF7F5C] rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-tachometer-alt text-xl text-white"></i>
+                        </div>
+                        <h3 class="text-base font-bold text-[#002B49] mb-1">Go to My Dashboard</h3>
+                        <p class="text-gray-600 text-xs text-center">Manage appointments & consult patients</p>
+                        <span class="mt-2 inline-flex items-center text-[#FF7F5C] font-medium text-sm group-hover:text-[#e66a4a]">
+                            Open Dashboard <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+            
+            <!-- Feature badges -->
+            <div class="mt-6 flex flex-wrap justify-center gap-3 animate-on-scroll opacity-0" data-animation="fade-in">
+                <div class="bg-white bg-opacity-10 rounded-full px-4 py-1.5 flex items-center">
+                    <i class="fas fa-video text-white mr-2 text-sm"></i>
+                    <span class="text-white text-xs font-medium">HD Video Calls</span>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-full px-4 py-1.5 flex items-center">
+                    <i class="fas fa-lock text-white mr-2 text-sm"></i>
+                    <span class="text-white text-xs font-medium">Secure & Private</span>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-full px-4 py-1.5 flex items-center">
+                    <i class="fas fa-file-medical text-white mr-2 text-sm"></i>
+                    <span class="text-white text-xs font-medium">Digital Prescriptions</span>
+                </div>
+                <div class="bg-white bg-opacity-10 rounded-full px-4 py-1.5 flex items-center">
+                    <i class="fas fa-comment-medical text-white mr-2 text-sm"></i>
+                    <span class="text-white text-xs font-medium">Chat Support</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Search Section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-    <div class="c360-card p-6 md:p-8 animate-on-scroll opacity-0" data-animation="slide-up">
-        <h2 class="text-2xl font-bold text-gray-800 mb-2">Find Your Doctor</h2>
-        <p class="text-gray-600 mb-6">Search by name, specialty, or available date to connect with the right healthcare professional</p>
-        <form method="get" action="{% url 'doctor_search' %}" id="doctor-search-form">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                    <label for="query" class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fas fa-user-md text-primary-teal mr-2"></i>Doctor Name or Specialty
-                    </label>
-                    <input type="text" name="query" id="query" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-teal focus:border-primary-teal transition-colors" placeholder="e.g., Dr. Smith or Cardiology">
-                </div>
-                <div>
-                    <label for="specialty" class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fas fa-stethoscope text-primary-teal mr-2"></i>Specialty
-                    </label>
-                    <input type="text" name="specialty" id="specialty" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-teal focus:border-primary-teal transition-colors" placeholder="e.g., Pediatrics">
-                </div>
-                <div>
-                    <label for="date" class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fas fa-calendar-alt text-primary-teal mr-2"></i>Available Date
-                    </label>
-                    <input type="date" name="date" id="date" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary-teal focus:border-primary-teal transition-colors">
-                </div>
+<!-- Statistics Bar -->
+<div class="bg-white shadow-lg">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="animate-on-scroll opacity-0" data-animation="slide-up">
+                <div class="text-2xl md:text-3xl font-bold text-[#1976A3]">{{ total_consultations|default:"1000" }}+</div>
+                <div class="text-gray-600 text-xs mt-1">Consultations Completed</div>
             </div>
-            <div class="mt-8 flex justify-center">
-                <button type="submit" class="c360-btn-primary px-8 py-3 text-base inline-flex items-center">
-                    <i class="fas fa-search mr-2"></i>
-                    Search Doctors
-                </button>
+            <div class="animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.1s;">
+                <div class="text-2xl md:text-3xl font-bold text-[#1976A3]">{{ total_doctors|default:"50" }}+</div>
+                <div class="text-gray-600 text-xs mt-1">Verified Doctors</div>
             </div>
-        </form>
+            <div class="animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.2s;">
+                <div class="text-2xl md:text-3xl font-bold text-[#1976A3]">{{ total_patients|default:"500" }}+</div>
+                <div class="text-gray-600 text-xs mt-1">Happy Patients</div>
+            </div>
+            <div class="animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.3s;">
+                <div class="text-2xl md:text-3xl font-bold text-[#1976A3]">24/7</div>
+                <div class="text-gray-600 text-xs mt-1">Available Support</div>
+            </div>
+        </div>
     </div>
 </div>
-
-{% if featured_doctors %}
-<section class="bg-white py-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold text-center text-ui-dark mb-10">Our Featured Specialists</h2>
-
-    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 c360-fade-in">
-      {% for doctor in featured_doctors %}
-      <div class="c360-card p-6">
-        <div class="flex items-center mb-4">
-          <div class="icon-circle text-white bg-brand">
-            <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-          </div>
-          <div class="ml-4">
-            <h3 class="text-xl font-semibold text-ui-dark">Dr. {{ doctor.user.get_full_name }}</h3>
-            <p class="text-sm text-ui-medium">{{ doctor.profile.specialty }}</p>
-          </div>
-        </div>
-
-        <p class="text-sm text-ui-medium mb-1">{{ doctor.profile.experience_years }} years of experience</p>
-        <p class="text-sm text-ui-medium mb-2">{{ doctor.profile.hospital_affiliation|default:"" }}</p>
-
-        <div class="text-ui-dark font-semibold text-base">
-          ₹{{ doctor.profile.consultation_fee }} <span class="text-sm text-ui-medium">per consultation</span>
-        </div>
-
-        <a href="{% url 'doctor_detail' doctor.user.id %}" class="mt-5 block text-center c360-btn-primary">
-          View Profile
-        </a>
-      </div>
-      {% endfor %}
-    </div>
-
-    <div class="text-center mt-10">
-      <a href="{% url 'doctor_search' %}" class="c360-btn-secondary inline-flex items-center">
-        View All Doctors
-        <svg class="h-5 w-5 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-{% endif %}
 
 <!-- How It Works Section -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
@@ -147,15 +180,11 @@
     </div>
     
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-        <!-- Connecting line (hidden on mobile) -->
-        <div class="hidden md:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-teal to-primary-light z-0"></div>
-        
         <!-- Step 1 -->
-        <div class="c360-card p-6 pt-12 text-center relative z-10 animate-on-scroll opacity-0" data-animation="slide-up">
+        <div class="c360-card p-6 text-center relative z-10 animate-on-scroll opacity-0" data-animation="slide-up">
             <div class="c360-service-icon mx-auto mb-6">
                 <i class="fas fa-search text-3xl"></i>
             </div>
-            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-primary-teal text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
             <h3 class="text-xl font-semibold text-gray-800 mb-3">Find a Doctor</h3>
             <p class="text-gray-600">Search our directory of specialists by name, specialty, or available dates, and view their detailed profiles and ratings.</p>
             <a href="{% url 'doctor_search' %}" class="inline-block mt-4 text-primary-teal hover:text-primary-dark font-medium">
@@ -165,11 +194,10 @@
         </div>
         
         <!-- Step 2 -->
-        <div class="c360-card p-6 pt-12 text-center relative z-10 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.2s;">
+        <div class="c360-card p-6 text-center relative z-10 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.2s;">
             <div class="c360-service-icon mx-auto mb-6">
                 <i class="fas fa-calendar-check text-3xl"></i>
             </div>
-            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-primary-teal text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
             <h3 class="text-xl font-semibold text-gray-800 mb-3">Book an Appointment</h3>
             <p class="text-gray-600">Schedule a convenient time slot, make a secure payment through our platform, and receive instant confirmation.</p>
             {% if user.is_authenticated %}
@@ -186,11 +214,10 @@
         </div>
         
         <!-- Step 3 -->
-        <div class="c360-card p-6 pt-12 text-center relative z-10 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.4s;">
+        <div class="c360-card p-6 text-center relative z-10 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 0.4s;">
             <div class="c360-service-icon mx-auto mb-6">
                 <i class="fas fa-video text-3xl"></i>
             </div>
-            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-primary-teal text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
             <h3 class="text-xl font-semibold text-gray-800 mb-3">Attend Your Consultation</h3>
             <p class="text-gray-600">Join a secure video call, discuss your health concerns, and receive a digital prescription and consultation transcript.</p>
             <a href="#how-video-works" class="inline-block mt-4 text-primary-teal hover:text-primary-dark font-medium">
@@ -202,60 +229,60 @@
 </div>
 
 <!-- Services Section -->
-<div class="bg-gradient-to-b from-white to-gray-50 py-16 md:py-20">
+<div class="bg-gradient-to-b from-[#00416A] to-[#1976A3] py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10 animate-on-scroll opacity-0" data-animation="fade-in">
-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Our Services</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">Comprehensive telehealth services for all your healthcare needs</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-3">Our Services</h2>
+            <p class="text-blue-100 max-w-2xl mx-auto">Comprehensive telehealth services for all your healthcare needs</p>
         </div>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {% if services %}
                 {% for service in services %}
-                <div class="c360-card p-6 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: {{ forloop.counter|divisibleby:4 }}00ms;">
-                    <div class="c360-service-icon">
-                        <i class="{{ service.icon_class }} text-3xl"></i>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: {{ forloop.counter|divisibleby:4 }}00ms;">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="{{ service.icon_class }} text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ service.name }}</h3>
-                    <p class="text-gray-600">{{ service.description }}</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">{{ service.name }}</h3>
+                    <p class="text-blue-100 text-sm">{{ service.description }}</p>
                 </div>
                 {% endfor %}
             {% else %}
                 <!-- Fallback services if no dynamic content is available -->
-                <div class="c360-card p-6 animate-on-scroll opacity-0" data-animation="slide-up">
-                    <div class="c360-service-icon">
-                        <i class="fas fa-stethoscope text-3xl"></i>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 animate-on-scroll opacity-0" data-animation="slide-up">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-stethoscope text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">General Consultation</h3>
-                    <p class="text-gray-600">Consult with general physicians for common health concerns and medical advice.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">General Consultation</h3>
+                    <p class="text-blue-100 text-sm">Consult with general physicians for common health concerns and medical advice.</p>
                 </div>
-                <div class="c360-card p-6 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 100ms;">
-                    <div class="c360-service-icon">
-                        <i class="fas fa-user-md text-3xl"></i>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 100ms;">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-user-md text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Specialist Consultations</h3>
-                    <p class="text-gray-600">Connect with specialists in cardiology, dermatology, pediatrics, and more.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Specialist Consultations</h3>
+                    <p class="text-blue-100 text-sm">Connect with specialists in cardiology, dermatology, pediatrics, and more.</p>
                 </div>
-                <div class="c360-card p-6 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 200ms;">
-                    <div class="c360-service-icon">
-                        <i class="fas fa-brain text-3xl"></i>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 200ms;">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-brain text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Mental Health Support</h3>
-                    <p class="text-gray-600">Access professional psychiatrists and psychologists for mental wellbeing.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Mental Health Support</h3>
+                    <p class="text-blue-100 text-sm">Access professional psychiatrists and psychologists for mental wellbeing.</p>
                 </div>
-                <div class="c360-card p-6 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 300ms;">
-                    <div class="c360-service-icon">
-                        <i class="fas fa-clipboard-check text-3xl"></i>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 animate-on-scroll opacity-0" data-animation="slide-up" style="animation-delay: 300ms;">
+                    <div class="w-14 h-14 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-clipboard-check text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Follow-up Consultations</h3>
-                    <p class="text-gray-600">Convenient follow-up appointments with your healthcare provider.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Follow-up Consultations</h3>
+                    <p class="text-blue-100 text-sm">Convenient follow-up appointments with your healthcare provider.</p>
                 </div>
             {% endif %}
         </div>
         
         <!-- Feature Call-to-Action -->
         <div class="mt-12 text-center animate-on-scroll opacity-0" data-animation="fade-in">
-            <a href="{% url 'doctor_search' %}" class="c360-btn-primary px-8 py-3 text-base inline-flex items-center">
+            <a href="{% url 'doctor_search' %}" class="bg-white text-[#00416A] hover:bg-blue-50 px-8 py-3 rounded-full text-base font-medium inline-flex items-center transition-colors">
                 <i class="fas fa-hand-holding-medical mr-2"></i>
                 Explore All Services
             </a>
@@ -264,7 +291,7 @@
 </div>
 
 <!-- Testimonials Section -->
-<div class="bg-gradient-to-b from-teal-50 to-white py-16 md:py-20">
+<div class="bg-gradient-to-b from-blue-50 to-white py-16 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-8 animate-on-scroll opacity-0" data-animation="fade-in">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">What Our Users Say</h2>
@@ -338,7 +365,7 @@
 </div>
 
 <!-- Health Tips Section -->
-<div class="bg-gradient-to-b from-white to-teal-50 py-16 md:py-20">
+<div class="bg-gradient-to-b from-white to-blue-50 py-16 md:py-20">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <!-- Section Header -->
