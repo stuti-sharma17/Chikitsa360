@@ -1,12 +1,13 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.decorators.http import require_POST
 
 from .ai_service import ChatbotConfigError, get_qa_chain
 
 
 def chatbot_page(request):
-    return render(request, "chatbot/chatbot.html")
+    """Redirect to homepage — chatbot is now a modal overlay in base.html."""
+    return redirect('/?chatbot=open')
 
 
 @require_POST
