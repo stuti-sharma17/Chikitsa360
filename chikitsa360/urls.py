@@ -9,6 +9,7 @@ urlpatterns = [
     path('consultation/', include('consultation_app.urls')),
     path('payment/', include('payment_app.urls')),
     path('chat/', include('chat_app.urls')),
+    path('chatbot/', include('chatbot_app.urls')),
     path('transcription/', include('transcription_app.urls')),
     path('', include('consultation_app.urls')),  # Landing page is part of consultation app
 ]

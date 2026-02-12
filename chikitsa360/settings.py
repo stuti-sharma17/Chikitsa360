@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'payment_app.apps.PaymentAppConfig',
     'chat_app.apps.ChatAppConfig',
     'transcription_app.apps.TranscriptionAppConfig',
+    'chatbot_app.apps.ChatbotAppConfig',
     'widget_tweaks',
     'corsheaders'
 ]

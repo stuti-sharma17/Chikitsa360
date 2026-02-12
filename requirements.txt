@@ -16,3 +16,7 @@ gunicorn
 dj-database-url
 whitenoise
 django-csp
+langchain==0.0.352
+pinecone-client==2.2.4
+ctransformers==0.2.27
+sentence-transformers==2.2.2
