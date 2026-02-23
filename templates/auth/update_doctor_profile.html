@@ -35,7 +35,9 @@
       <div class="space-y-6">
         {% for field in form %}
           <div>
-            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
+              {{ field.label }}{% if field.field.required %}<span class="text-red-500"> *</span>{% endif %}
+            </label>
             
             {% if field.widget_type == 'textarea' %}
               {{ field|add_class:"w-full mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm h-28 resize-none focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500" }}

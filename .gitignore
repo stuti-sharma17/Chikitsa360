@@ -5,3 +5,9 @@ venv/
 /.venv
 *.pyc
 _pycache_/
+
+# Local AI model artifacts (keep local, never push)
+AI chat/AyurvedaChatbot/model/*.bin
+AI chat/AyurvedaChatbot/model/*.gguf
+AI chat/AyurvedaChatbot/model/*.ggml*
+AI chat/AyurvedaChatbot/model/*.safetensors

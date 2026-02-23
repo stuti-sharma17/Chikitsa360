@@ -1,5 +1,5 @@
 /**
- * Payment functionality for Chikitsa360
+ * Payment functionality for Chikitsa
  * Integrates Razorpay for payment processing
  */
 
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const orderId = razorpayButton.dataset.orderId;
         const amount = razorpayButton.dataset.amount;
         const currency = razorpayButton.dataset.currency || 'INR';
-        const name = razorpayButton.dataset.name || 'Chikitsa360';
+        const name = razorpayButton.dataset.name || 'Chikitsa';
         const description = razorpayButton.dataset.description || 'Doctor Consultation';
         const keyId = razorpayButton.dataset.keyId;
         const prefill = {

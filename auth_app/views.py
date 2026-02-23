@@ -47,7 +47,7 @@ class RegisterView(CreateView):
 
         # If the user is a doctor, create a doctor profile
         if user.role == User.Role.DOCTOR:
-            DoctorProfile.objects.create(user=user)
+            DoctorProfile.objects.create(user=user, **form.get_doctor_profile_data())
 
         # Specify the backend explicitly
         backend = get_backends()[0]

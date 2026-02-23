@@ -1,4 +1,4 @@
-# Chikitsa360 - Comprehensive Project Summary
+# Chikitsa - Comprehensive Project Summary
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -18,7 +18,7 @@
 
 ## Project Overview
 
-**Chikitsa360** is a comprehensive telemedicine platform built with Django that enables patients and healthcare providers to conduct secure video consultations. The platform facilitates appointment booking, real-time video consultations, automated transcription services, payment processing, and secure messaging between patients and doctors.
+**Chikitsa** is a comprehensive telemedicine platform built with Django that enables patients and healthcare providers to conduct secure video consultations. The platform facilitates appointment booking, real-time video consultations, automated transcription services, payment processing, and secure messaging between patients and doctors.
 
 ### Key Objectives
 - Provide accessible healthcare through telemedicine
@@ -505,7 +505,7 @@ Receipt (OneToOne with Payment)
 - `/transcription/status/<uuid>/` - Check status
 - `/transcription/detail/<uuid>/` - View transcription
 
-### 6. **chikitsa360** - Project Configuration
+### 6. **Chikitsa** - Project Configuration
 
 **Files**:
 - `settings.py`: Django settings
@@ -1644,7 +1644,7 @@ templates/
 
 ## Conclusion
 
-Chikitsa360 is a comprehensive telemedicine platform built with modern web technologies. It provides a complete solution for remote healthcare consultations with features including:
+Chikitsa is a comprehensive telemedicine platform built with modern web technologies. It provides a complete solution for remote healthcare consultations with features including:
 
 - Secure user authentication and authorization
 - Doctor discovery and appointment booking
@@ -1661,5 +1661,5 @@ The platform is built with scalability, security, and user experience in mind, u
 **Document Version**: 1.0  
 **Last Updated**: 2025  
 **Author**: Project Analysis  
-**Project**: Chikitsa360 - Telemedicine Platform
+**Project**: Chikitsa - Telemedicine Platform
 

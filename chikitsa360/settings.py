@@ -224,7 +224,11 @@ CONTENT_SECURITY_POLICY = {
             'https://cdnjs.cloudflare.com',
             'https://use.fontawesome.com',
             'https://unpkg.com',
-            'https://*.daily.co'
+            'https://*.daily.co',
+            'https://translate.google.com',
+            'https://translate.googleapis.com',
+            'https://translate-pa.googleapis.com',
+            'https://www.gstatic.com',
         ],
         'img-src': [
             "'self'", 'data:', '/static/', '/staticfiles/',
@@ -238,8 +242,20 @@ CONTENT_SECURITY_POLICY = {
             'https://cdnjs.cloudflare.com',
             'https://use.fontawesome.com'
         ],
-        'connect-src': ["'self'", 'https://*.daily.co'],
-        'frame-src': ["'self'", 'https://*.daily.co'],
+        'connect-src': [
+            "'self'",
+            'https://*.daily.co',
+            'https://translate.googleapis.com',
+            'https://translate-pa.googleapis.com',
+            'https://translate.google.com',
+        ],
+        'frame-src': [
+            "'self'",
+            'https://*.daily.co',
+            'https://translate.google.com',
+            'https://*.google.com',
+            'https://*.googleusercontent.com',
+        ],
         'media-src': ["'self'", 'https://*.daily.co'],
     }
 }

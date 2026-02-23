@@ -99,7 +99,16 @@ class DoctorSearchView(ListView):
     
     def get_queryset(self):
         form = DoctorSearchForm(self.request.GET)
-        queryset = User.objects.filter(role=User.Role.DOCTOR, is_active=True)
+        queryset = (
+            User.objects.filter(
+                role=User.Role.DOCTOR,
+                is_active=True,
+                doctor_profile__isnull=False,
+            )
+            .exclude(doctor_profile__license_number__isnull=True)
+            .exclude(doctor_profile__license_number__exact="")
+            .order_by("first_name", "last_name", "id")
+        )
         
         if form.is_valid():
             query = form.cleaned_data.get('query')
@@ -122,7 +131,7 @@ class DoctorSearchView(ListView):
                     availabilities__date=date,
                     availabilities__is_booked=False
                 ).distinct()
-        
+
         return queryset
     
     def get_context_data(self, **kwargs):

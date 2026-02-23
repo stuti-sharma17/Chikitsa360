@@ -13,16 +13,20 @@ QA_PAIRS = [
             "hello", "hi", "hey", "good morning", "good evening",
             "hello there", "namaste", "greetings",
         ],
-        "answer": (
-            "Namaste! 🙏 I'm <b>AyurBot</b> — your Ayurvedic health assistant."
-            "<br><br>Try asking me:"
-            "<ul>"
-            "<li>What is Ayurveda?</li>"
-            "<li>Tell me about Ashwagandha</li>"
-            "<li>How to boost immunity?</li>"
-            "<li>Ayurvedic remedies for stress</li>"
-            "</ul>"
-        ),
+        "answers": [
+            (
+                "Namaste! 🙏 I'm <b>AyurBot</b> — your Ayurvedic health guide."
+                "<br><br>Ask me about doshas, herbs, or daily routines to stay balanced."
+            ),
+            (
+                "Hey there! 🤖 <b>AyurBot</b> here. I can help with Ayurvedic remedies, diet tips, and wellness routines."
+                "<br>Try: <i>\"Ayurvedic remedy for stress\"</i> or <i>\"What is Ashwagandha?\"</i>"
+            ),
+            (
+                "Welcome! 🌿 I'm <b>AyurBot</b>. Curious about your dosha, immunity boosters, or a weight-loss plan?"
+                "<br>Type any health query and I'll share an Ayurvedic perspective."
+            ),
+        ],
     },
     # -- 1. What is Ayurveda --
     {
@@ -348,8 +352,456 @@ QA_PAIRS = [
             "</ul>"
         ),
     },
+    # -- 21. Dental / Oral health --
+    {
+        "keywords": [
+            "dental health", "oral health", "tooth pain", "teeth care",
+            "toothache remedy", "gum care", "oil pulling benefits", "mouth ulcers",
+        ],
+        "answer": (
+            "Ayurvedic tips for <b>healthy teeth &amp; gums</b>:"
+            "<ul>"
+            "<li><b>Oil pulling</b> (sesame or coconut) for 5-10 min daily reduces plaque &amp; bad breath</li>"
+            "<li><b>Triphala mouth rinse</b> soothes gums and mouth ulcers</li>"
+            "<li><b>Clove oil</b> dab for toothache (temporary relief)</li>"
+            "<li>Avoid excess <b>sugar &amp; acidic drinks</b>; sip warm water instead of cold sodas</li>"
+            "<li>Chew <b>neem sticks</b> or use neem-based paste for antimicrobial care</li>"
+            "</ul>"
+        ),
+    },
+    # -- 22. Pollution — lungs & breathing --
+    {
+        "keywords": [
+            "pollution", "air pollution", "breathing problems", "smog", "cough pollution",
+            "pollution lungs", "pollution remedies", "asthma pollution",
+        ],
+        "answer": (
+            "To protect lungs in <b>polluted air</b>:"
+            "<ul>"
+            "<li><b>Steam inhalation</b> with tulsi or eucalyptus clears mucus</li>"
+            "<li><b>Turmeric + black pepper</b> in warm milk supports respiratory immunity</li>"
+            "<li><b>Pippali (long pepper)</b> and <b>Vasaka</b> are traditional for cough &amp; breath ease</li>"
+            "<li>Do <b>Anulom-Vilom &amp; Bhramari</b> pranayama daily to strengthen lungs</li>"
+            "<li>Wear a <b>well-fitted mask</b> outdoors; keep indoor air clean with ventilation</li>"
+            "</ul>"
+        ),
+    },
+    # -- 22b. Brain health / focus / pollution effects --
+    {
+        "keywords": [
+            "brain health", "mental clarity", "focus", "concentration", "memory",
+            "brain fog", "pollution brain", "smog brain", "cognitive health",
+        ],
+        "answer": (
+            "<b>Brain &amp; cognitive support</b> (esp. when feeling foggy or after pollution exposure):"
+            "<ul>"
+            "<li><b>Brahmi</b> and <b>Shankhpushpi</b> are classical medhya rasayanas for memory &amp; focus</li>"
+            "<li><b>Ashwagandha</b> lowers stress cortisol that can cloud thinking</li>"
+            "<li>Keep <b>hydrated</b>; add warm <b>ginger-lemon</b> water to improve circulation</li>"
+            "<li>Do <b>alternate-nostril breathing (Anulom-Vilom)</b> for 5-7 minutes to clear mental fog</li>"
+            "<li>Sleep 7-8 hours; reduce screens late night; add <b>walnuts &amp; ghee</b> for brain nourishment</li>"
+            "</ul>"
+        ),
+    },
+    # -- 23. Pollution — skin protection --
+    {
+        "keywords": [
+            "pollution skin", "skin pollution", "dull skin pollution", "anti pollution skincare",
+            "pollution face care", "skin barrier pollution",
+        ],
+        "answer": (
+            "For <b>skin exposed to pollution</b>:"
+            "<ul>"
+            "<li>Cleanse with a gentle <b>gram flour + milk</b> paste; avoid harsh soaps</li>"
+            "<li>Use <b>kumkumadi taila</b> or light facial oils to support the skin barrier</li>"
+            "<li><b>Neem</b> or <b>manjistha</b> face packs help with acne &amp; detox</li>"
+            "<li><b>Amla + aloe vera juice</b> nourishes skin from within</li>"
+            "<li>Rinse face after commuting; keep a soft cloth to wipe pollution dust</li>"
+            "</ul>"
+        ),
+    },
+    # -- 24. Pollution — eyes protection --
+    {
+        "keywords": [
+            "pollution eyes", "burning eyes", "red eyes pollution", "itchy eyes pollution",
+            "eye irritation smog",
+        ],
+        "answer": (
+            "If <b>eyes feel irritated</b> from pollution:"
+            "<ul>"
+            "<li>Wash with cool clean water; avoid rubbing</li>"
+            "<li>Use <b>rose water</b> or sterile soothing drops for comfort</li>"
+            "<li><b>Triphala eyewash</b> (mild) is traditional for cleansing; ensure hygiene</li>"
+            "<li>Wear <b>wraparound glasses</b> outdoors to block dust/smog</li>"
+            "<li>Eat <b>Vitamin A/C rich foods</b> (carrot, amla, spinach) for eye health</li>"
+            "</ul>"
+        ),
+    },
+    # -- 25. Headache / Migraine --
+    {
+        "keywords": [
+            "headache", "migraine", "head pain", "pain in head", "brain pain", "brain ache",
+            "pitta headache", "vata headache", "stress headache",
+        ],
+        "answer": (
+            "For <b>headache / migraine</b>:"
+            "<ul>"
+            "<li><b>Shirodhara</b> (medicated oil on forehead) is classic for chronic migraines</li>"
+            "<li>Apply cool <b>ghee + camphor</b> or <b>sandalwood paste</b> on temples (Pitta soothing)</li>"
+            "<li><b>Nasya</b>: 2-3 drops warm <b>anuthailam</b> or sesame oil per nostril (Vata calming)</li>"
+            "<li>Avoid triggers: bright screens, skipping meals, excess coffee, heat</li>"
+            "<li>Hydrate; practise <b>sheetali breath</b> and <b>forward bends</b> for cooling</li>"
+            "</ul>"
+        ),
+    },
+    # -- 26. Back pain --
+    {
+        "keywords": [
+            "back pain", "low back pain", "lumbar pain", "slip disc ayurveda", "back ache",
+        ],
+        "answer": (
+            "For <b>back pain</b> (often Vata-aggravation):"
+            "<ul>"
+            "<li><b>Kati basti</b> (warm medicated oil pooling on lower back) for stiffness</li>"
+            "<li><b>Mahanarayan taila</b> warm massage, then gentle heat pad</li>"
+            "<li>Stretch: <b>cat-cow, bhujangasana, setu bandhasana</b> (avoid pain-inducing moves)</li>"
+            "<li><b>Triphala</b> + fiber if constipation worsens pain</li>"
+            "<li>Keep core warm; avoid cold drafts and long sitting</li>"
+            "</ul>"
+        ),
+    },
+    # -- 27. Hair fall / Dandruff --
+    {
+        "keywords": [
+            "hair fall", "hair loss", "dandruff", "dry scalp", "hair thinning",
+        ],
+        "answer": (
+            "For <b>hair fall &amp; dandruff</b>:"
+            "<ul>"
+            "<li>Weekly <b>warm oiling</b>: bhringraj or coconut + curry leaves</li>"
+            "<li><b>Triphala</b> or <b>amla</b> internally for scalp nourishment</li>"
+            "<li>Apply <b>neem + yogurt</b> or <b>fenugreek</b> paste for dandruff</li>"
+            "<li>Gentle shampoo; avoid very hot water and harsh chemicals</li>"
+            "<li>Protein + iron rich diet; manage stress with pranayama</li>"
+            "</ul>"
+        ),
+    },
+    # -- 28. Weight management --
+    {
+        "keywords": [
+            "weight loss", "weight gain", "lose weight ayurveda", "kapha weight", "metabolism boost",
+        ],
+        "answer": (
+            "<b>Ayurvedic weight balance</b>:"
+            "<ul>"
+            "<li><b>Kapha-pacifying diet</b>: warm, light, spicy; avoid sugar and cold dairy</li>"
+            "<li><b>Trikatu</b> (black pepper + pippali + ginger) to kindle Agni</li>"
+            "<li><b>Early dinner</b>, finish 3 hrs before sleep; biggest meal at noon</li>"
+            "<li>Daily <b>brisk walk + surya namaskar</b> 12 cycles; add dry brushing (garshana)</li>"
+            "<li>Stay hydrated with <b>jeera-coriander-fennel</b> water</li>"
+            "</ul>"
+        ),
+    },
+    # -- 29. Diabetes / High blood sugar --
+    {
+        "keywords": [
+            "diabetes", "high blood sugar", "type 2 diabetes", "madhumeha", "sugar control",
+        ],
+        "answer": (
+            "For <b>blood sugar balance</b> (Madhumeha):"
+            "<ul>"
+            "<li><b>Vijaysar tumbler water</b> (overnight) or <b>Gudmar</b> (Gymnema) under guidance</li>"
+            "<li><b>Fenugreek seeds</b> soaked overnight; consume in morning</li>"
+            "<li>Plate rule: 1/2 veggies, 1/4 protein, 1/4 whole grains; avoid refined carbs</li>"
+            "<li>Walk 10-15 minutes after meals to improve glucose uptake</li>"
+            "<li>Monitor regularly; work with your physician for meds/insulin adjustments</li>"
+            "</ul>"
+        ),
+    },
+    # -- 30. Hypertension / Heart --
+    {
+        "keywords": [
+            "high blood pressure", "hypertension", "heart health", "bp control", "cholesterol",
+        ],
+        "answer": (
+            "<b>Heart &amp; blood pressure care</b>:"
+            "<ul>"
+            "<li><b>Arjuna bark</b> decoction is classical cardiotonic; use under medical advice</li>"
+            "<li><b>Garlic</b> and <b>flaxseed</b> support lipids; reduce fried/salty foods</li>"
+            "<li>Daily <b>mindful breathing</b>: 5-10 minutes slow belly breathing lowers BP</li>"
+            "<li><b>Pranayama:</b> Anulom-Vilom; avoid intense Kapalbhati if BP high</li>"
+            "<li>Consistent sleep and weight control are key for long-term BP stability</li>"
+            "</ul>"
+        ),
+    },
+    # -- 31. Arthritis / Joint pain --
+    {
+        "keywords": [
+            "arthritis", "joint pain", "knee pain", "osteoarthritis", "rheumatoid", "sandhivata",
+        ],
+        "answer": (
+            "For <b>joint pain</b> (Sandhivata):"
+            "<ul>"
+            "<li><b>Nirgundi</b> or <b>shallaki</b> (Boswellia) for inflammation; consult practitioner</li>"
+            "<li><b>Mahanarayan</b> or <b>dashmool</b> oil massage + mild heat</li>"
+            "<li><b>Castor oil</b> at night (small dose) can ease Vata in joints</li>"
+            "<li>Gentle <b>range-of-motion yoga</b>; avoid impact loading</li>"
+            "<li>Keep joints warm; include omega-3s and turmeric in diet</li>"
+            "</ul>"
+        ),
+    },
+    # -- 32. Allergies / Sinus --
+    {
+        "keywords": [
+            "allergy", "allergies", "sinus", "allergic rhinitis", "sneezing", "hay fever",
+        ],
+        "answer": (
+            "For <b>allergic rhinitis / sinus</b>:"
+            "<ul>"
+            "<li>Daily <b>nasya</b>: 2 drops warm sesame or ghee in each nostril</li>"
+            "<li><b>Trikatu</b> and <b>sitopaladi</b> are traditional for Kapha congestion</li>"
+            "<li><b>Neti pot</b> with saline (lukewarm) to clear passages; dry well after</li>"
+            "<li>Avoid cold foods, curd at night, and dust triggers; keep bedding clean</li>"
+            "<li><b>Ginger-tulsi-pepper tea</b> for daily defence</li>"
+            "</ul>"
+        ),
+    },
+    # -- 33. Menstrual cramps / PCOS support --
+    {
+        "keywords": [
+            "period pain", "menstrual cramps", "pcos", "pcod", "irregular periods", "dysmenorrhea",
+        ],
+        "answer": (
+            "For <b>period pain &amp; PCOS support</b>:"
+            "<ul>"
+            "<li><b>Ajwain + dry ginger tea</b> eases cramps; apply warm compress on lower abdomen</li>"
+            "<li><b>Dashmool</b> or <b>hingvastak</b> churna for Vata-related pain (per practitioner)</li>"
+            "<li>Stabilize blood sugar: balanced meals, avoid frequent sugary snacks</li>"
+            "<li>Daily <b>walk + yoga</b> (malasana, supta baddha konasana, gentle twists)</li>"
+            "<li>Sleep hygiene &amp; stress reduction to balance hormones</li>"
+            "</ul>"
+        ),
+    },
+    # -- 34. Eye strain (screens) --
+    {
+        "keywords": [
+            "eye strain", "computer vision syndrome", "tired eyes", "burning eyes screen",
+        ],
+        "answer": (
+            "For <b>screen-related eye strain</b>:"
+            "<ul>"
+            "<li>Follow <b>20-20-20</b> rule; blink consciously to avoid dryness</li>"
+            "<li>Cool <b>rose water pads</b> or cucumber slices for soothing</li>"
+            "<li><b>Triphaladi ghrita</b> is traditional for eye nourishment (under guidance)</li>"
+            "<li>Adjust screen brightness, use anti-glare, keep screen at eye level</li>"
+            "<li>Include <b>carrot, amla, ghee</b> for eye-supportive nutrients</li>"
+            "</ul>"
+        ),
+    },
+    # -- 35. Ear care / Mild ear pain --
+    {
+        "keywords": [
+            "ear pain", "ear ache", "ear care", "ear wax", "ear infection mild",
+        ],
+        "answer": (
+            "For mild <b>ear discomfort</b> (not severe infection):"
+            "<ul>"
+            "<li>2-3 drops warm <b>sesame oil</b> (lukewarm) can soften wax; avoid if infection suspected</li>"
+            "<li>Keep ears dry; avoid earbuds that push wax deeper</li>"
+            "<li><b>Ginger-tulsi steam</b> may ease Eustachian congestion</li>"
+            "<li>If pain, fever, or discharge persists, seek medical evaluation promptly</li>"
+            "</ul>"
+        ),
+    },
+    # -- 35b. Shoulder pain / frozen shoulder --
+    {
+        "keywords": [
+            "shoulder pain", "shoulder ache", "pain in shoulder", "shoulder stiffness",
+            "frozen shoulder", "shoulder joint pain", "rotator cuff pain", "shoulder muscle pain",
+        ],
+        "answer": (
+            "For <b>shoulder pain / stiffness</b> (often Vata aggravation or strain):"
+            "<ul>"
+            "<li><b>Warm oil massage</b> (Mahanarayan taila or sesame oil) followed by mild heat can reduce stiffness</li>"
+            "<li>Do gentle mobility exercises: <b>pendulum swings, wall walks, shoulder rolls</b> (avoid painful jerks)</li>"
+            "<li><b>Turmeric + ginger</b> in diet may support inflammation management</li>"
+            "<li>Avoid sleeping on the painful side and avoid heavy overhead lifting until pain improves</li>"
+            "<li>If there is severe pain, weakness, swelling, numbness, injury/trauma, or reduced movement for weeks, get medical evaluation</li>"
+            "</ul>"
+        ),
+    },
+    # -- 36. Weight-loss day schedule / diet plan --
+    {
+        "keywords": [
+            "weight loss schedule", "diet schedule", "diet plan weight loss", "meal plan weight loss",
+            "weight loss routine", "day plan for weight loss", "diet chart weight loss", "lose weight diet chart",
+        ],
+        "answer": (
+            "<b>Sample Ayurvedic-inspired day plan for weight loss</b> (Kapha-balancing):"
+            "<ul>"
+            "<li><b>Upon waking</b>: warm water with lemon + pinch of ginger</li>"
+            "<li><b>Breakfast</b> (light): veggie upma/poha or mung dal chilla; avoid sugar-laden cereals</li>"
+            "<li><b>Mid-morning</b>: herbal tea (cumin-coriander-fennel) or buttermilk with roasted cumin</li>"
+            "<li><b>Lunch</b> (largest): 1/2 plate veggies, 1/4 dal/lean protein, 1/4 millets/brown rice; salad with lemon</li>"
+            "<li><b>Evening</b>: nuts (5-6 soaked almonds) or roasted chana; brisk 20-min walk</li>"
+            "<li><b>Dinner</b> (light, 3 hrs before bed): clear veggie soup + small khichdi; no fried/heavy foods</li>"
+            "<li><b>Spice support</b>: trikatu or ginger before meals to kindle Agni (per practitioner)</li>"
+            "<li><b>Sleep</b>: in bed by 10-10:30 PM; consistent routine aids metabolism</li>"
+            "</ul>"
+        ),
+    },
+    # -- 37. Kidney stones / renal health --
+    {
+        "keywords": [
+            "kidney stone", "renal stone", "kidney pain", "kidney health", "stone prevention",
+        ],
+        "answer": (
+            "For <b>kidney stone care</b> (supportive):"
+            "<ul>"
+            "<li><b>Hydration</b>: 2.5â€“3 L water/day unless medically restricted</li>"
+            "<li><b>Fresh lemon water</b> (citrate helps prevent stone formation)</li>"
+            "<li>Reduce high-oxalate foods (spinach, beet, nuts) if you form oxalate stones</li>"
+            "<li><b>Varuna</b> and <b>gokshura</b> are traditional; use only under practitioner guidance</li>"
+            "<li>Severe flank pain, fever, or vomiting = seek urgent medical care</li>"
+            "</ul>"
+        ),
+    },
+    # -- 38. Liver health / fatty liver --
+    {
+        "keywords": [
+            "liver health", "fatty liver", "liver detox", "elevated sgpt", "liver care",
+        ],
+        "answer": (
+            "<b>Liver support</b> (fatty liver/raised enzymes):"
+            "<ul>"
+            "<li><b>Zero alcohol</b>; cut sugary drinks and refined carbs</li>"
+            "<li><b>Bhumi amla</b> (Phyllanthus niruri) and <b>turmeric</b> support the liver (use per expert)</li>"
+            "<li><b>Weight loss</b> 5-10% body weight improves fatty liver</li>"
+            "<li>Eat bitter greens (karela, methi), adequate protein, good fats (olive, nuts)</li>"
+            "<li>Regular liver function tests with your physician</li>"
+            "</ul>"
+        ),
+    },
+    # -- 39. Thyroid (hypothyroid support) --
+    {
+        "keywords": [
+            "thyroid", "hypothyroid", "low thyroid", "thyroxine", "tsh high",
+        ],
+        "answer": (
+            "<b>Thyroid support</b> (with doctor-managed medication):"
+            "<ul>"
+            "<li>Take prescribed <b>thyroxine</b> on empty stomach; don’t self-adjust dose</li>"
+            "<li><b>Selenium &amp; zinc</b> rich foods: pumpkin seeds, nuts, lentils</li>"
+            "<li>Avoid excess raw goitrogens (raw cabbage/soy) near medication time</li>"
+            "<li>Light exercise + regular sleep improve metabolism</li>"
+            "<li><b>Kanchanar guggulu</b> is classical; only under Ayurvedic physician supervision</li>"
+            "</ul>"
+        ),
+    },
+    # -- 40. Anemia / low hemoglobin --
+    {
+        "keywords": [
+            "anemia", "low hemoglobin", "hb low", "iron deficiency", "low iron",
+        ],
+        "answer": (
+            "For <b>low hemoglobin</b> (screen cause with labs):"
+            "<ul>"
+            "<li><b>Iron-rich</b> foods: beet, spinach, sesame, dates, jaggery, pomegranate</li>"
+            "<li>Pair with <b>Vitamin C</b> (amla, lemon) to boost absorption</li>"
+            "<li><b>Lohasava</b> / <b>punarnava mandur</b> used traditionally; only under supervision</li>"
+            "<li>Avoid tea/coffee close to iron intake; they inhibit absorption</li>"
+            "<li>Check B12/folate; treat per doctor if deficient</li>"
+            "</ul>"
+        ),
+    },
+    # -- 41. Dehydration / electrolytes --
+    {
+        "keywords": [
+            "dehydration", "electrolytes", "heat exhaustion", "heat stroke prevention",
+        ],
+        "answer": (
+            "<b>Hydration &amp; electrolytes</b>:"
+            "<ul>"
+            "<li>Signs: dry mouth, dark urine, dizziness, rapid pulse</li>"
+            "<li>Sip <b>ORS</b> or homemade mix (1L water + 6 tsp sugar + 1/2 tsp salt + lemon)</li>"
+            "<li><b>Buttermilk</b> with roasted cumin is light and rehydrating</li>"
+            "<li>Avoid excessive caffeinated/energy drinks in heat</li>"
+            "<li>If confusion, very low urine, or fainting â†’ seek urgent care</li>"
+            "</ul>"
+        ),
+    },
+    # -- 42. Fever (general) --
+    {
+        "keywords": [
+            "fever", "high temperature", "viral fever", "pyrexia", "fever remedy",
+        ],
+        "answer": (
+            "For <b>fever</b> (general supportive care):"
+            "<ul>"
+            "<li>Rest + light warm fluids: rice kanji, tulsi-ginger tea, clear soups</li>"
+            "<li><b>Sponge with lukewarm water</b> if very hot; avoid cold showers</li>"
+            "<li>Avoid heavy/oily foods; keep meals small and warm</li>"
+            "<li>Monitor temperature; if >102Â°F (38.9Â°C), rash, breathlessness, or lasts >3 days â†’ see a doctor</li>"
+            "<li>Do not mix/unprescribed antipyretics; follow physician guidance</li>"
+            "</ul>"
+        ),
+    },
+    # -- 43. Urinary tract discomfort (UTI support) --
+    {
+        "keywords": [
+            "uti", "urinary infection", "burning urination", "urine burning", "urinary tract",
+        ],
+        "answer": (
+            "For <b>UTI support</b> (medical evaluation needed):"
+            "<ul>"
+            "<li><b>Hydrate</b>: frequent water; don’t hold urine</li>"
+            "<li><b>Coriander seed water</b> (soaked overnight) is cooling traditionally</li>"
+            "<li><b>Cranberry</b> may reduce recurrence (evidence mixed)</li>"
+            "<li>If fever, flank pain, blood in urine, or pregnancy â†’ seek prompt doctor care for antibiotics</li>"
+            "</ul>"
+        ),
+    },
+    # -- 44. Muscle recovery / workout nutrition --
+    {
+        "keywords": [
+            "post workout", "muscle recovery", "muscle gain diet", "protein intake", "gym diet",
+        ],
+        "answer": (
+            "<b>Muscle recovery &amp; lean gain</b>:"
+            "<ul>"
+            "<li><b>Protein</b>: 1.2â€“1.6 g/kg/day from dal, paneer, tofu, eggs/lean meat per tolerance</li>"
+            "<li><b>Carb + protein</b> within 1 hr post-workout: banana + whey/soaked almonds + milk/curd</li>"
+            "<li><b>Hydrate</b>; add electrolytes after heavy sweat sessions</li>"
+            "<li><b>Ashwagandha</b> is an adaptogen for strength; use per practitioner</li>"
+            "<li>Sleep 7-8 hrs; progressive overload with rest days prevents injury</li>"
+            "</ul>"
+        ),
+    },
+    # -- 45. Schedule appointment CTA --
+    {
+        "keywords": [
+            "schedule appointment", "book appointment", "book a doctor", "schedule me appointment",
+            "doctor appointment", "book consultation", "need appointment", "book a visit",
+        ],
+        "answer": (
+            "<b>Sure, I can book it for you.</b><br>"
+            "<ul>"
+            "<li>Tell me: <b>specialty</b>, <b>date</b>, and a <b>time window</b> (e.g., 10–12 AM).</li>"
+            "<li>If you already picked a slot, send its <b>slot ID</b> and I'll auto-book.</li>"
+            "<li>You can also browse: <a href=\"/doctors/search/\" style=\"color:#8cd4f5;text-decoration:underline;\">Find a doctor</a></li>"
+            "</ul>"
+            "Once I have a slot ID, I’ll reserve it instantly."
+        ),
+    },
 ]
 
+
+# Safety footer appended to every reply
+SAFETY_NOTE = (
+    "<br><small style='color:rgba(255,255,255,0.65);display:block;margin-top:0.35rem;'>"
+    "Note: This is general wellness information, not a medical diagnosis or prescription. "
+    "Consult a qualified doctor for personalised care, especially for persistent or severe symptoms.</small>"
+)
 
 # -- Fallback response when no match is found --
 FALLBACK_RESPONSE = (

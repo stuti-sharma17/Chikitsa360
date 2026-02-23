@@ -1,5 +1,5 @@
 /**
- * Video consultation functionality for Chikitsa360
+ * Video consultation functionality for Chikitsa
  * Integrates Daily.co WebRTC for video calls with enhanced audio recording
  */
 
