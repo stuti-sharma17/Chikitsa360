@@ -1,4 +1,5 @@
 import os
+import tempfile
 import requests
 import json
 import base64
@@ -43,8 +44,8 @@ class TranscriptionService:
                 "Content-Type": "application/json"
             }
             
-            # Save the audio data to a temporary file
-            temp_file_path = f"/tmp/audio_{transcription.id}.webm"
+            # Save the audio data to a temporary file (cross-platform)
+            temp_file_path = os.path.join(tempfile.gettempdir(), f"audio_{transcription.id}.webm")
             with open(temp_file_path, "wb") as f:
                 f.write(audio_data)
             
