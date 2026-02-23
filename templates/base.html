@@ -463,11 +463,16 @@
     <!-- Site-wide Language Translator (Google Translate) -->
     <div id="google_translate_element" class="notranslate" translate="no" style="display:none;"></div>
     <style>
-        .goog-te-banner-frame.skiptranslate {
+        /* Hide Google Translate banner frame */
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-banner-frame {
             display: none !important;
+            height: 0 !important;
+            visibility: hidden !important;
         }
         body {
             top: 0 !important;
+            position: static !important;
         }
         .goog-logo-link,
         .goog-te-gadget span {
@@ -477,8 +482,51 @@
             font-size: 0 !important;
             color: transparent !important;
         }
-        .skiptranslate iframe {
+        /* Hide ALL Google Translate injected iframes and popups */
+        .skiptranslate iframe,
+        .skiptranslate {
             visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+            display: none !important;
+        }
+        /* Keep only the translate element container (hidden) */
+        #google_translate_element.skiptranslate,
+        #google_translate_element {
+            display: none !important;
+        }
+        /* Hide the Google Translate feedback / rating bar */
+        .goog-te-ftab,
+        .goog-te-ftab-link,
+        #goog-gt-tt,
+        .goog-te-balloon-frame,
+        .goog-text-highlight,
+        div#goog-gt-,
+        .goog-te-spinner-pos,
+        .goog-te-spinner,
+        [id^="goog-gt-"],
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-hFsbo,
+        .VIpgJd-ZVi9od-ORHb-UEyKYb,
+        .VIpgJd-ZVi9od-SmKAyb,
+        .VIpgJd-ZVi9od-xl07Ob-lTBxed,
+        .VIpgJd-ZVi9od-aZ2wEe,
+        .VIpgJd-suEOdc {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        /* Prevent body shift from translate bar */
+        html.translated-ltr, html.translated-rtl {
+            margin-top: 0 !important;
+        }
+        html.translated-ltr body, html.translated-rtl body {
+            top: 0 !important;
         }
     </style>
     <script>
@@ -598,6 +646,45 @@
             document.addEventListener('DOMContentLoaded', function() {
                 syncLanguageSelectors(getSavedLanguage());
                 setTimeout(function() { tryApplySavedLanguage(0); }, 800);
+
+                // Actively remove Google Translate injected UI elements
+                function removeGoogleTranslateUI() {
+                    var selectors = [
+                        '.goog-te-ftab',
+                        '#goog-gt-tt',
+                        '.goog-te-balloon-frame',
+                        '.goog-te-spinner-pos',
+                        '[id^="goog-gt-"]',
+                        '.VIpgJd-ZVi9od-aZ2wEe-wOHMyf',
+                        '.VIpgJd-ZVi9od-ORHb-UEyKYb',
+                        '.VIpgJd-ZVi9od-SmKAyb',
+                        '.VIpgJd-ZVi9od-xl07Ob-lTBxed',
+                        '.VIpgJd-ZVi9od-aZ2wEe',
+                        '.VIpgJd-suEOdc'
+                    ];
+                    selectors.forEach(function(sel) {
+                        document.querySelectorAll(sel).forEach(function(el) {
+                            el.remove();
+                        });
+                    });
+                    // Remove any stray skiptranslate divs (except the hidden element container)
+                    document.querySelectorAll('.skiptranslate').forEach(function(el) {
+                        if (el.id !== 'google_translate_element') {
+                            el.style.display = 'none';
+                            el.style.height = '0';
+                            el.style.overflow = 'hidden';
+                        }
+                    });
+                }
+
+                // Run cleanup periodically and via MutationObserver
+                removeGoogleTranslateUI();
+                setInterval(removeGoogleTranslateUI, 2000);
+
+                var observer = new MutationObserver(function() {
+                    removeGoogleTranslateUI();
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
             });
         })();
     </script>
