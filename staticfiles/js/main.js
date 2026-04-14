@@ -1,5 +1,5 @@
 /**
- * Main JavaScript file for Chikitsa360
+ * Main JavaScript file for Chikitsa
  */
 
 // Set up CSRF token for AJAX requests

@@ -2,9 +2,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from chatbot_app.views import api_create_appointment
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/appointments', api_create_appointment, name='api_appointments_no_slash'),
+    path('api/appointments/', api_create_appointment, name='api_appointments'),
     path('auth/', include('auth_app.urls')),
     path('consultation/', include('consultation_app.urls')),
     path('payment/', include('payment_app.urls')),

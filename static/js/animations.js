@@ -1,5 +1,5 @@
 /**
- * Chikitsa360 Animations
+ * Chikitsa Animations
  * Custom animations for a modern healthcare experience
  */
 

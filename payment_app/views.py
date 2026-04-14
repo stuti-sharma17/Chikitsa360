@@ -49,6 +49,11 @@ class PaymentCheckoutView(LoginRequiredMixin, View):
                 payment.razorpay_order_id = "SIMULATED_ORDER_ID"
                 payment.save()
 
+            # Mirror the real callback side-effect so local/dev flow remains end-to-end.
+            if appointment.status != Appointment.Status.CONFIRMED:
+                appointment.status = Appointment.Status.CONFIRMED
+                appointment.save(update_fields=["status", "updated_at"])
+
             messages.success(request, "Payment has been simulated successfully.")
             return redirect('appointment_detail', pk=appointment.id)
 

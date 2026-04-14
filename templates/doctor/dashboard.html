@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Doctor Dashboard - Chikitsa360{% endblock %}
+{% block title %}Doctor Dashboard - Chikitsa{% endblock %}
 
 {% block content %}
 <section class="bg-gradient-to-r from-[var(--primary-teal)] to-[var(--primary-dark)] text-white py-10">
@@ -167,7 +167,13 @@
       <div class="c360-card">
         <div class="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
           <h2 class="text-lg font-semibold text-gray-800">Doctor Profile</h2>
-          <a href="{% url 'update_doctor_profile' %}" class="text-sm text-[var(--primary-teal)] hover:text-[var(--primary-dark)]">Edit</a>
+          <a
+            href="{% url 'update_doctor_profile' %}"
+            onclick="window.location.href=this.href; return false;"
+            class="relative z-10 inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium text-[var(--primary-teal)] hover:text-[var(--primary-dark)] hover:bg-[var(--primary-light)]/20 pointer-events-auto"
+          >
+            Edit
+          </a>
         </div>
         <div class="px-6 py-4 text-sm text-gray-600 space-y-2">
           {% if user.doctor_profile %}

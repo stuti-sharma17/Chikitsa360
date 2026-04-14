@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 
-{% block title %}Sign up for Chikitsa360{% endblock %}
+{% block title %}Sign up for Chikitsa{% endblock %}
 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -12,7 +12,7 @@
       <div class="bg-gradient-to-r from-[var(--primary-teal)] to-[var(--primary-dark)] px-6 py-8 text-white rounded-t-lg">
         <h2 class="text-2xl font-semibold text-center">Create your account</h2>
         <p class="mt-1 text-center text-white/80 text-sm">
-          Join Chikitsa360 for healthcare at your fingertips
+          Join Chikitsa for healthcare at your fingertips
         </p>
       </div>
 
@@ -121,6 +121,65 @@
             {% endif %}
           </div>
 
+          <!-- Doctor details (shown only when Doctor role selected) -->
+          <div id="doctor-fields" class="mb-6 p-4 border border-teal-100 bg-teal-50 rounded-lg hidden">
+            <div class="mb-4">
+              <h3 class="text-base font-semibold text-gray-800">Doctor Registration Details</h3>
+              <p class="text-xs text-gray-600 mt-1">Please complete all required professional details.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="{{ form.specialty.id_for_label }}" class="form-label">Specialty <span class="text-red-600">*</span></label>
+                {{ form.specialty|add_class:"form-input" }}
+                {% if form.specialty.errors %}<p class="form-error">{{ form.specialty.errors.0 }}</p>{% endif %}
+              </div>
+              <div>
+                <label for="{{ form.license_number.id_for_label }}" class="form-label">License Number <span class="text-red-600">*</span></label>
+                {{ form.license_number|add_class:"form-input" }}
+                {% if form.license_number.errors %}<p class="form-error">{{ form.license_number.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="{{ form.experience_years.id_for_label }}" class="form-label">Years of Experience <span class="text-red-600">*</span></label>
+                {{ form.experience_years|add_class:"form-input" }}
+                {% if form.experience_years.errors %}<p class="form-error">{{ form.experience_years.errors.0 }}</p>{% endif %}
+              </div>
+              <div>
+                <label for="{{ form.consultation_fee.id_for_label }}" class="form-label">Consultation Fee (INR) <span class="text-red-600">*</span></label>
+                {{ form.consultation_fee|add_class:"form-input" }}
+                {% if form.consultation_fee.errors %}<p class="form-error">{{ form.consultation_fee.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="{{ form.education.id_for_label }}" class="form-label">Education & Qualifications <span class="text-red-600">*</span></label>
+              {{ form.education|add_class:"form-input" }}
+              {% if form.education.errors %}<p class="form-error">{{ form.education.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div class="mb-4">
+              <label for="{{ form.bio.id_for_label }}" class="form-label">Professional Bio <span class="text-red-600">*</span></label>
+              {{ form.bio|add_class:"form-input" }}
+              {% if form.bio.errors %}<p class="form-error">{{ form.bio.errors.0 }}</p>{% endif %}
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="{{ form.hospital_affiliation.id_for_label }}" class="form-label">Hospital Affiliation</label>
+                {{ form.hospital_affiliation|add_class:"form-input" }}
+                {% if form.hospital_affiliation.errors %}<p class="form-error">{{ form.hospital_affiliation.errors.0 }}</p>{% endif %}
+              </div>
+              <div>
+                <label for="{{ form.languages_spoken.id_for_label }}" class="form-label">Languages Spoken</label>
+                {{ form.languages_spoken|add_class:"form-input" }}
+                {% if form.languages_spoken.errors %}<p class="form-error">{{ form.languages_spoken.errors.0 }}</p>{% endif %}
+              </div>
+            </div>
+          </div>
+
           <!-- Terms -->
           <div class="mb-6">
             <label class="flex items-start gap-3 text-sm text-gray-700">
@@ -151,4 +210,25 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    function toggleDoctorFields() {
+      var selectedRole = document.querySelector('input[name="role"]:checked');
+      var doctorFields = document.getElementById('doctor-fields');
+      if (!doctorFields) return;
+      doctorFields.classList.toggle('hidden', !(selectedRole && selectedRole.value === 'DOCTOR'));
+    }
+
+    document.addEventListener('change', function(e) {
+      if (e.target && e.target.name === 'role') toggleDoctorFields();
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', toggleDoctorFields);
+    } else {
+      toggleDoctorFields();
+    }
+  })();
+</script>
 {% endblock %}

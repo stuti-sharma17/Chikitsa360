@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Payment Checkout - Chikitsa360{% endblock %}
+{% block title %}Payment Checkout - Chikitsa{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -97,7 +97,7 @@
                             data-order-id="{{ order_id }}" 
                             data-amount="{{ amount_in_paisa }}" 
                             data-currency="{{ currency }}" 
-                            data-name="Chikitsa360" 
+                            data-name="Chikitsa" 
                             data-description="Medical Consultation" 
                             data-key-id="{{ razorpay_key_id }}"
                             data-user-name="{{ appointment.patient.get_full_name }}"

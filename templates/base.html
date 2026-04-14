@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}Chikitsa360: Healthcare! Everywhere!{% endblock %}</title>
+    <title>{% block title %}Chikitsa: Healthcare! Everywhere!{% endblock %}</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,9 +31,9 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <!-- Logo -->
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="{% url 'home' %}" class="flex items-center">
-                            <img src="/static/images/chikitsa360-logo.png" alt="Chikitsa360" class="c360-logo h-10">
+                    <div class="flex-shrink-0 flex items-center h-full">
+                        <a href="{% url 'home' %}" class="flex items-center h-full">
+                            <img src="/static/images/chikitsa360-logo.png" alt="Chikitsa" class="c360-logo">
                         </a>
                     </div>
                     
@@ -42,9 +42,11 @@
                         <a href="{% url 'home' %}" class="inline-flex items-center px-1 pt-1 border-b-2 {% if request.path == '/' %}border-primary-teal text-gray-900{% else %}border-transparent text-gray-500 hover:text-primary-teal hover:border-primary-light{% endif %}">
                             Home
                         </a>
+                        {% if not user.is_authenticated or user.is_patient %}
                         <a href="{% url 'doctor_search' %}" class="inline-flex items-center px-1 pt-1 border-b-2 {% if 'doctor_search' in request.path %}border-primary-teal text-gray-900{% else %}border-transparent text-gray-500 hover:text-primary-teal hover:border-primary-light{% endif %}">
                             Find Doctors
                         </a>
+                        {% endif %}
                         <a href="#" onclick="toggleChatbot(); return false;" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-gray-500 hover:text-primary-teal hover:border-primary-light">
                             <i class="fas fa-robot mr-1"></i> AI Chatbot
                         </a>
@@ -72,6 +74,24 @@
                 
                 <!-- User Menu -->
                 <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <div class="mr-4 notranslate" translate="no">
+                        <label for="site-language-select" class="sr-only">Select language</label>
+                        <select id="site-language-select" class="text-sm border border-gray-200 rounded-md px-2 py-1 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-teal" onchange="changeSiteLanguage(this.value)">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="bn">Bengali</option>
+                            <option value="mr">Marathi</option>
+                            <option value="ta">Tamil</option>
+                            <option value="te">Telugu</option>
+                            <option value="gu">Gujarati</option>
+                            <option value="kn">Kannada</option>
+                            <option value="ml">Malayalam</option>
+                            <option value="pa">Punjabi</option>
+                            <option value="or">Odia</option>
+                            <option value="as">Assamese</option>
+                            <option value="ur">Urdu</option>
+                        </select>
+                    </div>
                     {% if user.is_authenticated %}
                         <div class="ml-3 relative">
                             <div class="flex items-center">
@@ -137,12 +157,32 @@
         <!-- Mobile menu -->
         <div class="sm:hidden hidden" id="mobile-menu">
             <div class="pt-2 pb-3 space-y-1">
+                <div class="px-3 py-2 notranslate" translate="no">
+                    <label for="mobile-site-language-select" class="block text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1">Language</label>
+                    <select id="mobile-site-language-select" class="w-full text-sm border border-gray-200 rounded-md px-3 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-primary-teal" onchange="changeSiteLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="bn">Bengali</option>
+                        <option value="mr">Marathi</option>
+                        <option value="ta">Tamil</option>
+                        <option value="te">Telugu</option>
+                        <option value="gu">Gujarati</option>
+                        <option value="kn">Kannada</option>
+                        <option value="ml">Malayalam</option>
+                        <option value="pa">Punjabi</option>
+                        <option value="or">Odia</option>
+                        <option value="as">Assamese</option>
+                        <option value="ur">Urdu</option>
+                    </select>
+                </div>
                 <a href="{% url 'home' %}" class="block pl-3 pr-4 py-2 border-l-4 {% if request.path == '/' %}border-primary-teal text-primary-teal bg-primary-light bg-opacity-20{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-primary-light hover:text-primary-teal{% endif %}">
                     Home
                 </a>
+                {% if not user.is_authenticated or user.is_patient %}
                 <a href="{% url 'doctor_search' %}" class="block pl-3 pr-4 py-2 border-l-4 {% if 'doctor_search' in request.path %}border-primary-teal text-primary-teal bg-primary-light bg-opacity-20{% else %}border-transparent text-gray-600 hover:bg-gray-50 hover:border-primary-light hover:text-primary-teal{% endif %}">
                     Find Doctors
                 </a>
+                {% endif %}
                 <a href="#" onclick="toggleChatbot(); return false;" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-gray-600 hover:bg-gray-50 hover:border-primary-light hover:text-primary-teal">
                     <i class="fas fa-robot mr-1"></i> AI Chatbot
                 </a>
@@ -301,7 +341,7 @@
     <!-- Bottom Bar -->
     <div class="border-t border-[var(--primary-light)] mt-8 pt-8 text-sm flex flex-col md:flex-row justify-between items-center">
       <p class="text-[var(--primary-light)] mb-4 md:mb-0">
-        &copy; {% now "Y" %} Chikitsa360: Healthcare! Everywhere! All rights reserved.
+        &copy; {% now "Y" %} Chikitsa: Healthcare! Everywhere! All rights reserved.
       </p>
       <div class="flex space-x-6">
         <a href="#" class="hover:text-white">Privacy Policy</a>
@@ -361,9 +401,7 @@
 
     <!-- FAB Button -->
     <button class="chatbot-fab" id="chatbot-fab" onclick="toggleChatbot()" title="Chat with AyurBot" style="position:fixed;bottom:2rem;right:2rem;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1976A3,#00416A);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,65,106,0.4);display:flex;align-items:center;justify-content:center;z-index:1000;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-        </svg>
+        <img src="/static/images/chatbot-bot.svg" alt="AyurBot" style="width:28px;height:28px;display:block;filter:invert(1);opacity:0.95;">
     </button>
 
     <!-- Backdrop -->
@@ -375,11 +413,13 @@
         <div class="chatbot-header" style="background:linear-gradient(135deg,#00416A,#1976A3);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
             <div style="display:flex;align-items:center;gap:0.75rem;">
                 <div style="width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid rgba(255,255,255,0.3);">
-                    <i class="fas fa-robot" style="font-size:1.2rem;color:white;"></i>
+                    <img src="/static/images/chatbot-bot.svg" alt="AyurBot" style="width:26px;height:26px;display:block;filter:invert(1);opacity:0.95;">
                 </div>
                 <div>
                     <div style="color:white;font-weight:700;font-size:1.05rem;line-height:1.2;">AyurBot</div>
-                    <div style="color:rgba(255,255,255,0.7);font-size:0.75rem;line-height:1.2;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#4cd137;margin-right:4px;vertical-align:middle;"></span>Online &mdash; Ask me anything!</div>
+                    <div style="color:rgba(255,255,255,0.78);font-size:0.68rem;line-height:1.35;max-width:290px;">
+                        Info only. Not medical advice.
+                    </div>
                 </div>
             </div>
             <button class="chatbot-close" onclick="toggleChatbot()" title="Close chat" style="background:rgba(255,255,255,0.15);border:none;color:white;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -390,7 +430,7 @@
         <!-- Messages -->
         <div class="chatbot-messages" id="chatbot-messages" style="flex:1;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:1rem;background:linear-gradient(180deg,#002B49 0%,#001a2e 100%);">
             <div class="chatbot-welcome" style="text-align:center;padding:1.5rem 1rem;color:rgba(255,255,255,0.5);font-size:0.85rem;">
-                <i class="fas fa-robot" style="font-size:2.5rem;color:#6BA3C4;opacity:0.5;display:block;margin-bottom:0.75rem;"></i>
+                <img src="/static/images/chatbot-bot.svg" alt="AyurBot" style="width:44px;height:44px;display:block;margin:0 auto 0.75rem auto;filter:invert(72%) sepia(11%) saturate(739%) hue-rotate(158deg) brightness(92%) contrast(88%);opacity:0.7;">
                 <p>Welcome to <strong style="color:rgba(255,255,255,0.7);">AyurBot</strong>!</p>
                 <p>Your Ayurvedic health assistant. Ask me about remedies, wellness tips, or health advice.</p>
             </div>
@@ -399,7 +439,7 @@
         <!-- Typing indicator -->
         <div class="chatbot-typing" id="chatbot-typing" style="display:none;align-self:flex-start;gap:0.5rem;align-items:center;padding-left:1.25rem;padding-bottom:0.5rem;">
             <div style="background:rgba(25,118,163,0.3);color:#6BA3C4;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                <i class="fas fa-robot" style="font-size:0.65rem;"></i>
+                <img src="/static/images/chatbot-bot.svg" alt="" style="width:16px;height:16px;display:block;filter:invert(72%) sepia(11%) saturate(739%) hue-rotate(158deg) brightness(92%) contrast(88%);">
             </div>
             <div style="display:flex;gap:4px;padding:0.75rem 1rem;background:rgba(25,118,163,0.2);border-radius:16px;border-bottom-left-radius:4px;">
                 <span class="chatbot-typing-dot" style="width:7px;height:7px;border-radius:50%;background:#6BA3C4;animation:typingBounce 1.4s ease-in-out infinite;"></span>
@@ -419,6 +459,236 @@
             </form>
         </div>
     </div>
+
+    <!-- Site-wide Language Translator (Google Translate) -->
+    <div id="google_translate_element" class="notranslate" translate="no" style="display:none;"></div>
+    <style>
+        /* Hide Google Translate banner frame */
+        .goog-te-banner-frame.skiptranslate,
+        .goog-te-banner-frame {
+            display: none !important;
+            height: 0 !important;
+            visibility: hidden !important;
+        }
+        body {
+            top: 0 !important;
+            position: static !important;
+        }
+        .goog-logo-link,
+        .goog-te-gadget span {
+            display: none !important;
+        }
+        .goog-te-gadget {
+            font-size: 0 !important;
+            color: transparent !important;
+        }
+        /* Hide ALL Google Translate injected iframes and popups */
+        .skiptranslate iframe,
+        .skiptranslate {
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+            display: none !important;
+        }
+        /* Keep only the translate element container (hidden) */
+        #google_translate_element.skiptranslate,
+        #google_translate_element {
+            display: none !important;
+        }
+        /* Hide the Google Translate feedback / rating bar */
+        .goog-te-ftab,
+        .goog-te-ftab-link,
+        #goog-gt-tt,
+        .goog-te-balloon-frame,
+        .goog-text-highlight,
+        div#goog-gt-,
+        .goog-te-spinner-pos,
+        .goog-te-spinner,
+        [id^="goog-gt-"],
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+        .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-hFsbo,
+        .VIpgJd-ZVi9od-ORHb-UEyKYb,
+        .VIpgJd-ZVi9od-SmKAyb,
+        .VIpgJd-ZVi9od-xl07Ob-lTBxed,
+        .VIpgJd-ZVi9od-aZ2wEe,
+        .VIpgJd-suEOdc {
+            display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            overflow: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        /* Prevent body shift from translate bar */
+        html.translated-ltr, html.translated-rtl {
+            margin-top: 0 !important;
+        }
+        html.translated-ltr body, html.translated-rtl body {
+            top: 0 !important;
+        }
+    </style>
+    <script>
+        (function() {
+            var STORAGE_KEY = 'c360_site_language';
+            var SUPPORTED_LANGS = ['en', 'hi', 'bn', 'mr', 'ta', 'te', 'gu', 'kn', 'ml', 'pa', 'or', 'as', 'ur'];
+            var GT_PAGE_LANG = 'en';
+            var APPLY_RETRY_MS = 350;
+            var APPLY_MAX_TRIES = 12;
+
+            function isSupported(lang) {
+                return SUPPORTED_LANGS.indexOf(lang) !== -1;
+            }
+
+            function getSavedLanguage() {
+                try {
+                    var saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved && isSupported(saved)) return saved;
+                } catch (e) {}
+                return 'en';
+            }
+
+            function saveLanguage(lang) {
+                try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+            }
+
+            function setGoogTransCookie(lang) {
+                var value = '/en/' + lang;
+                var expires = 'max-age=' + (60 * 60 * 24 * 365);
+                document.cookie = 'googtrans=' + value + '; path=/; ' + expires + '; SameSite=Lax';
+                if (window.location.hostname && window.location.hostname.indexOf('.') > -1) {
+                    document.cookie = 'googtrans=' + value + '; path=/; domain=' + window.location.hostname + '; ' + expires + '; SameSite=Lax';
+                }
+            }
+
+            function syncLanguageSelectors(lang) {
+                var selects = document.querySelectorAll('#site-language-select, #mobile-site-language-select');
+                for (var i = 0; i < selects.length; i++) {
+                    if (selects[i].value !== lang) {
+                        selects[i].value = lang;
+                    }
+                }
+            }
+
+            function getTranslateCombo() {
+                return document.querySelector('.goog-te-combo');
+            }
+
+            function applyLanguageUsingWidget(lang) {
+                var combo = getTranslateCombo();
+                if (!combo) return false;
+                combo.value = lang;
+                if (typeof Event === 'function') {
+                    combo.dispatchEvent(new Event('change'));
+                } else if (document.createEvent) {
+                    var evt = document.createEvent('HTMLEvents');
+                    evt.initEvent('change', true, true);
+                    combo.dispatchEvent(evt);
+                }
+                return true;
+            }
+
+            function tryApplySavedLanguage(retryCount) {
+                var lang = getSavedLanguage();
+                syncLanguageSelectors(lang);
+                if (lang === 'en') return;
+
+                setGoogTransCookie(lang);
+
+                if (applyLanguageUsingWidget(lang)) return;
+
+                if ((retryCount || 0) < APPLY_MAX_TRIES) {
+                    setTimeout(function() {
+                        tryApplySavedLanguage((retryCount || 0) + 1);
+                    }, APPLY_RETRY_MS);
+                }
+            }
+
+            window.changeSiteLanguage = function(lang) {
+                lang = (lang || '').toLowerCase();
+                if (!isSupported(lang)) lang = 'en';
+
+                saveLanguage(lang);
+                syncLanguageSelectors(lang);
+                setGoogTransCookie(lang);
+
+                if (lang === 'en') {
+                    // Reset to original page text reliably.
+                    window.location.reload();
+                    return;
+                }
+
+                if (!applyLanguageUsingWidget(lang)) {
+                    setTimeout(function() {
+                        if (!applyLanguageUsingWidget(lang)) {
+                            // If widget is not ready yet, a reload ensures cookie-based translation on next load.
+                            window.location.reload();
+                        }
+                    }, 500);
+                }
+            };
+
+            window.googleTranslateElementInit = function() {
+                if (!(window.google && google.translate && google.translate.TranslateElement)) return;
+                new google.translate.TranslateElement(
+                    {
+                        pageLanguage: GT_PAGE_LANG,
+                        includedLanguages: SUPPORTED_LANGS.join(','),
+                        autoDisplay: false,
+                        multilanguagePage: true
+                    },
+                    'google_translate_element'
+                );
+                setTimeout(function() { tryApplySavedLanguage(0); }, 250);
+            };
+
+            document.addEventListener('DOMContentLoaded', function() {
+                syncLanguageSelectors(getSavedLanguage());
+                setTimeout(function() { tryApplySavedLanguage(0); }, 800);
+
+                // Actively remove Google Translate injected UI elements
+                function removeGoogleTranslateUI() {
+                    var selectors = [
+                        '.goog-te-ftab',
+                        '#goog-gt-tt',
+                        '.goog-te-balloon-frame',
+                        '.goog-te-spinner-pos',
+                        '[id^="goog-gt-"]',
+                        '.VIpgJd-ZVi9od-aZ2wEe-wOHMyf',
+                        '.VIpgJd-ZVi9od-ORHb-UEyKYb',
+                        '.VIpgJd-ZVi9od-SmKAyb',
+                        '.VIpgJd-ZVi9od-xl07Ob-lTBxed',
+                        '.VIpgJd-ZVi9od-aZ2wEe',
+                        '.VIpgJd-suEOdc'
+                    ];
+                    selectors.forEach(function(sel) {
+                        document.querySelectorAll(sel).forEach(function(el) {
+                            el.remove();
+                        });
+                    });
+                    // Remove any stray skiptranslate divs (except the hidden element container)
+                    document.querySelectorAll('.skiptranslate').forEach(function(el) {
+                        if (el.id !== 'google_translate_element') {
+                            el.style.display = 'none';
+                            el.style.height = '0';
+                            el.style.overflow = 'hidden';
+                        }
+                    });
+                }
+
+                // Run cleanup periodically and via MutationObserver
+                removeGoogleTranslateUI();
+                setInterval(removeGoogleTranslateUI, 2000);
+
+                var observer = new MutationObserver(function() {
+                    removeGoogleTranslateUI();
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+            });
+        })();
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 
     <!-- Chatbot list styles -->
     <style>
@@ -503,6 +773,142 @@
 
         // Chatbot form submission — use vanilla JS to avoid jQuery dependency issues
         (function() {
+            function getSiteLanguagePreference() {
+                try {
+                    return (localStorage.getItem('c360_site_language') || 'en').toLowerCase();
+                } catch (e) {
+                    return 'en';
+                }
+            }
+
+            function normalizedTextContent(el) {
+                return ((el && el.textContent) || '').replace(/\s+/g, ' ').trim();
+            }
+
+            function splitTextIntoRevealTokens(text) {
+                if (!text) return [];
+                if (/\s/.test(text)) {
+                    return text.match(/\S+\s*|\s+/g) || [text];
+                }
+                // Fallback for scripts/segments without spaces
+                return text.split('');
+            }
+
+            function animateBubbleByWords(opts) {
+                var bubble = opts.bubble;
+                var typingEl = opts.typingEl;
+                var messagesEl = opts.messagesEl;
+                var tokenDelayMs = typeof opts.tokenDelayMs === 'number' ? opts.tokenDelayMs : 70;
+
+                var textNodes = [];
+                var walker;
+                try {
+                    walker = document.createTreeWalker(bubble, NodeFilter.SHOW_TEXT, null);
+                } catch (e) {
+                    // Fallback: if TreeWalker fails for any reason, just reveal immediately.
+                    bubble.style.opacity = '1';
+                    bubble.style.transform = 'translateY(0)';
+                    if (typingEl) typingEl.style.display = 'none';
+                    if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
+                    return;
+                }
+
+                var current;
+                while ((current = walker.nextNode())) {
+                    var original = current.nodeValue || '';
+                    if (!original) continue;
+
+                    // Keep purely whitespace nodes as-is to avoid odd layout shifts.
+                    if (!original.replace(/\s+/g, '')) {
+                        continue;
+                    }
+
+                    textNodes.push({
+                        node: current,
+                        fullText: original,
+                        tokens: splitTextIntoRevealTokens(original),
+                        tokenIndex: 0
+                    });
+                }
+
+                if (!textNodes.length) {
+                    bubble.style.opacity = '1';
+                    bubble.style.transform = 'translateY(0)';
+                    if (typingEl) typingEl.style.display = 'none';
+                    if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
+                    return;
+                }
+
+                for (var i = 0; i < textNodes.length; i++) {
+                    textNodes[i].node.nodeValue = '';
+                }
+
+                bubble.style.opacity = '1';
+                bubble.style.transform = 'translateY(0)';
+
+                var nodeCursor = 0;
+                function tick() {
+                    while (nodeCursor < textNodes.length) {
+                        var entry = textNodes[nodeCursor];
+                        if (entry.tokenIndex < entry.tokens.length) {
+                            entry.node.nodeValue += entry.tokens[entry.tokenIndex];
+                            entry.tokenIndex += 1;
+                            if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
+                            setTimeout(tick, tokenDelayMs);
+                            return;
+                        }
+                        nodeCursor += 1;
+                    }
+
+                    if (typingEl) typingEl.style.display = 'none';
+                    if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
+                }
+
+                setTimeout(tick, Math.max(35, tokenDelayMs));
+            }
+
+            function revealAfterTranslationReady(opts) {
+                var bubble = opts.bubble;
+                var typingEl = opts.typingEl;
+                var messagesEl = opts.messagesEl;
+                var originalText = opts.originalText || '';
+                var maxChecks = typeof opts.maxChecks === 'number' ? opts.maxChecks : 18;
+                var delayMs = typeof opts.delayMs === 'number' ? opts.delayMs : 140;
+                var animateWords = !!opts.animateWords;
+                var checks = 0;
+
+                function reveal() {
+                    if (animateWords) {
+                        animateBubbleByWords({
+                            bubble: bubble,
+                            typingEl: typingEl,
+                            messagesEl: messagesEl,
+                            tokenDelayMs: opts.tokenDelayMs
+                        });
+                        return;
+                    }
+                    bubble.style.opacity = '1';
+                    bubble.style.transform = 'translateY(0)';
+                    if (typingEl) typingEl.style.display = 'none';
+                    if (messagesEl) messagesEl.scrollTop = messagesEl.scrollHeight;
+                }
+
+                function check() {
+                    checks += 1;
+                    var currentText = normalizedTextContent(bubble);
+                    var translated = currentText && originalText && currentText !== originalText;
+                    var hasGoogleTranslateMarkup = !!bubble.querySelector('font');
+
+                    if (translated || hasGoogleTranslateMarkup || checks >= maxChecks) {
+                        reveal();
+                        return;
+                    }
+                    setTimeout(check, delayMs);
+                }
+
+                setTimeout(check, delayMs);
+            }
+
             function initChatbotForm() {
                 var form = document.getElementById('chatbot-form');
                 if (!form) return;
@@ -549,23 +955,85 @@
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     xhr.onreadystatechange = function() {
                         if (xhr.readyState !== 4) return;
-                        typingEl.style.display = 'none';
 
-                        var botDiv = document.createElement('div');
-                        botDiv.style.cssText = 'display:flex;gap:0.5rem;max-width:85%;align-self:flex-start;';
+                        // Keep the typing dots visible for a natural delay
+                        var responseText = xhr.status >= 200 && xhr.status < 300
+                            ? xhr.responseText
+                            : (xhr.responseText || 'Something went wrong. Please try again.');
 
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            botDiv.innerHTML = '<div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(25,118,163,0.3);color:#6BA3C4;"><i class="fas fa-robot" style="font-size:0.7rem;"></i></div>' +
-                                '<div><div class="ayurbot-msg" style="padding:0.75rem 1rem;border-radius:16px;font-size:0.85rem;line-height:1.6;word-wrap:break-word;background:rgba(25,118,163,0.2);color:rgba(255,255,255,0.9);border-bottom-left-radius:4px;">' + xhr.responseText + '</div>' +
-                                '<span style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;display:block;">' + timeStr + '</span></div>';
-                        } else {
-                            var errText = (xhr.responseText || 'Something went wrong. Please try again.').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                            botDiv.innerHTML = '<div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(25,118,163,0.3);color:#6BA3C4;"><i class="fas fa-robot" style="font-size:0.7rem;"></i></div>' +
-                                '<div><div style="padding:0.75rem 1rem;border-radius:16px;font-size:0.9rem;line-height:1.5;word-wrap:break-word;background:rgba(25,118,163,0.2);color:rgba(255,255,255,0.9);border-bottom-left-radius:4px;border-left:3px solid #E74C3C;">' + errText + '</div>' +
-                                '<span style="font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;display:block;">' + timeStr + '</span></div>';
-                        }
-                        messagesEl.appendChild(botDiv);
-                        messagesEl.scrollTop = messagesEl.scrollHeight;
+                        var delayMs = 2000; // 2s thinking pause
+                        var typeSpeed = 35; // ms per tick for smoother stream
+                        var chunkSize = 2;  // characters per tick to reduce choppiness
+
+                        setTimeout(function() {
+                            // Build bot message shell first
+                            var botDiv = document.createElement('div');
+                            botDiv.style.cssText = 'display:flex;gap:0.5rem;max-width:85%;align-self:flex-start;';
+
+                            var avatar = '<div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(25,118,163,0.3);color:#6BA3C4;"><img src=\"/static/images/chatbot-bot.svg\" alt=\"\" style=\"width:18px;height:18px;display:block;filter:invert(72%) sepia(11%) saturate(739%) hue-rotate(158deg) brightness(92%) contrast(88%);\"></div>';
+                            var bubbleStyles = 'padding:0.75rem 1rem;border-radius:16px;font-size:0.85rem;line-height:1.6;word-wrap:break-word;background:rgba(25,118,163,0.2);color:rgba(255,255,255,0.9);border-bottom-left-radius:4px;';
+
+                            var bubble = document.createElement('div');
+                            bubble.className = 'ayurbot-msg';
+                            bubble.style.cssText = bubbleStyles;
+                            bubble.innerHTML = ''; // will fill via typewriter
+
+                            if (!(xhr.status >= 200 && xhr.status < 300)) {
+                                responseText = responseText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                                bubble.style.borderLeft = '3px solid #E74C3C';
+                                bubble.style.fontSize = '0.9rem';
+                            }
+
+                            var meta = document.createElement('span');
+                            meta.style.cssText = 'font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;display:block;';
+                            meta.textContent = timeStr;
+
+                            var contentWrapper = document.createElement('div');
+                            contentWrapper.appendChild(bubble);
+                            contentWrapper.appendChild(meta);
+
+                            botDiv.innerHTML = avatar;
+                            botDiv.appendChild(contentWrapper);
+                            messagesEl.appendChild(botDiv);
+                            messagesEl.scrollTop = messagesEl.scrollHeight;
+
+                            var selectedSiteLanguage = getSiteLanguagePreference();
+                            var isTranslatedUiMode = selectedSiteLanguage && selectedSiteLanguage !== 'en';
+
+                            // In translated UI mode, hide the English response until translation is applied,
+                            // so it looks like the bot responded directly in the selected language.
+                            if (isTranslatedUiMode) {
+                                bubble.innerHTML = responseText;
+                                var originalText = normalizedTextContent(bubble);
+                                bubble.style.opacity = '0';
+                                bubble.style.transform = 'translateY(4px)';
+                                bubble.style.transition = 'opacity .18s ease, transform .18s ease';
+                                revealAfterTranslationReady({
+                                    bubble: bubble,
+                                    typingEl: typingEl,
+                                    messagesEl: messagesEl,
+                                    originalText: originalText,
+                                    maxChecks: 22,
+                                    delayMs: 120,
+                                    animateWords: true,
+                                    tokenDelayMs: 68
+                                });
+                                return;
+                            }
+
+                            // Typewriter effect (English UI mode)
+                            var i = 0;
+                            var typer = setInterval(function() {
+                                i = Math.min(i + chunkSize, responseText.length);
+                                bubble.innerHTML = responseText.slice(0, i);
+                                messagesEl.scrollTop = messagesEl.scrollHeight;
+
+                                if (i >= responseText.length) {
+                                    clearInterval(typer);
+                                    typingEl.style.display = 'none';
+                                }
+                            }, typeSpeed);
+                        }, delayMs);
                     };
                     xhr.send('msg=' + encodeURIComponent(rawText) + '&csrfmiddlewaretoken=' + encodeURIComponent(csrfToken));
                 });
